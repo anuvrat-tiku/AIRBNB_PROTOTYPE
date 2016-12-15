@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<head>
+    <style>
+        div.logo {
+            position: fixed;
+            top: 5px;
+            left: 20px;
+        }
+        div.fixedImage {
+
+            top: 130px;
+            left: 160px;
+        }
+
+        #searchID {
+            border-color: #ff5a5f;
+            background-color: #ff5a5f;
+            color: #fff;
+        }
+    </style>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
+
+    <link rel="stylesheet"
+          href="bower_components/chartist/dist/chartist.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <script src="angularjs/admin.js"></script>
+
+</head>
+<body ng-app="admin" ng-controller="admin">
+
+<header>
+    <% include ./user_adminheader_ab.ejs %>
+</header>
+<br>
+<main>
+
+    <div class="col-md-3"> <!-- 3  -->
+
+        <img src="/images/noProfilePhoto.png"  width="250px" height="250px">
+
+
+
+    </div>  <!-- 3 end -->
+
+    <div class="col-md-1">
+
+    </div>
+
+    <div class="col-md-7 well">  <!-- 7 -->
+
+        <div class="panel-header">
+            <h3 style="text-align:center;">User Details</h3><hr />
+        </div>
+
+        <br>
+        <div class="row">   <!-- userid -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                User ID
+            </div>
+
+            <div class="col-md-8">
+                <%- user.userid %>
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+        </div>          <!-- userid end -->
+
+        <br>
+        <div class="row">   <!-- firstname -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                First Name
+            </div>
+
+            <div class="col-md-8">
+                <%- user.firstname %>
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+        </div>          <!-- firstname end -->
+
+        <br>
+        <div class="row">   <!-- lastname -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                Last Name
+            </div>
+
+            <div class="col-md-8">
+                <%- user.lastname %>
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+        </div>            <!-- lastname end -->
+
+        <br>
+        <div class="row">   <!-- gender -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                I am
+                <span class="glyphicon glyphicon-lock" style="color:  palevioletred; font-size: 13px"></span>
+            </div>
+
+            <div class="col-md-8">
+
+                <%- user.gender%>
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+        </div>            <!-- gender end -->
+
+
+        <br>
+        <div class="row">   <!-- dob -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                Birth Date
+                <span class="glyphicon glyphicon-lock" style="color:  palevioletred; font-size: 13px"></span>
+            </div>
+
+            <div class="col-md-8">
+
+                <%- user.dob %>
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+        </div>            <!-- dob end -->
+
+
+        <br>
+        <div class="row">   <!-- email -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                Email Address
+                <span class="glyphicon glyphicon-lock" style="color:  palevioletred; font-size: 13px"></span>
+            </div>
+
+            <div class="col-md-8">
+                <%- user.email %>
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+        </div>            <!-- email end -->
+
+        <br>
+        <div class="row">   <!-- phone number -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                Phone Number
+                <span class="glyphicon glyphicon-lock" style="color:  palevioletred; font-size: 13px"></span>
+            </div>
+
+            <div class="col-md-8">
+                <%- user.phone %>
+            </div>
+            <!-- </div>  -->
+
+            <div class="col-md-1">
+
+            </div>
+        </div>            <!-- phone number end -->
+
+        <br>
+
+        <div class="row">   <!-- address -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                Address
+            </div>
+
+            <div class="col-md-8">
+
+                <%- user.address %>
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+        </div>            <!-- address end -->
+
+        <br>
+        <div class="row">   <!-- city -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                City
+            </div>
+
+            <div class="col-md-8">
+
+                <%- user.city %>
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+        </div>            <!-- city end -->
+
+
+        <br>
+        <div class="row">   <!-- state -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                State
+            </div>
+
+            <div class="col-md-8">
+
+                <%- user.state %>
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+        </div>            <!-- state end -->
+
+        <br>
+        <div class="row">   <!-- zipcode -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                Zip Code
+            </div>
+
+            <div class="col-md-8">
+
+                <%- user.zipcode %>
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+        </div>            <!-- zipcode end -->
+
+        <br>
+        <div class="row">   <!-- dob -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                Rating
+            </div>
+
+            <div class="col-md-8">
+
+                <%- user.rating %>
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+        </div>            <!-- dob end -->
+
+    </div>  <!-- 7 end -->
+
+    <div class="row">
+
+        <div class="col-md-7">
+
+            <script src="bower_components/chartist/dist/chartist.min.js"></script>
+            <div class="col-lg-4" style="width:350px; height:350px;padding-left:2cm">
+                <div class="ct-chart ct-perfect-fourth" style="width:400px;height:400px;"></div>
+                <script type="text/javascript">
+                    var data = {
+                        // A labels array that can contain any sort of values
+                        labels: [
+
+                            "loginUser", "editProfile", "UpdateProfileImage","changePassword", "logout"
+                        ],
+                        series: [
+                            [
+
+                                0,1,1,2,3
+                            ]
+                        ]
+                    };
+
+                    new Chartist.Line('.ct-chart', data);
+                </script>
+                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  User Tracking
+
+            </div>
+
+        </div>   <!-- 7 end -->
+
+        <div class="col-md-1">
+
+        </div>
+
+        <div class="col-md-3"> <!-- 7  -->
+            <button type="button" id="searchID" class="btn btn-default" onclick="window.location.href='/search_Users_ab'"><span class="glyphicon glyphicon-arrow-left" style="font-size: 13px"></span>Back</button>
+        </div>  <!-- 7 end -->
+    </div>
+
+
+</main>
+
+</body>
+</html>

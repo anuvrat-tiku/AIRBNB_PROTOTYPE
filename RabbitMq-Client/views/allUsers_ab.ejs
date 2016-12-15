@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<head>
+    <style>
+        div.logo {
+            position: fixed;
+            top: 5px;
+            left: 20px;
+        }
+        div.fixedImage {
+
+            top: 130px;
+            left: 160px;
+        }
+
+        #searchID {
+            border-color: #ff5a5f;
+            background-color: #ff5a5f;
+            color: #fff;
+        }
+
+    </style>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <script src="angularjs/admin.js"></script>
+
+</head>
+<body ng-app="admin" ng-controller="admin">
+<header>
+    <% include ./user_adminheader_ab.ejs %>
+</header>
+<br>
+
+<div class="row">
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td><h3>User ID</h3></td>
+            <td><h3>Firstname</h3></td>
+            <td><h3>Lastname</h3></td>
+            <td><h3>Email</h3></td>
+        </tr>
+        </thead>
+        <tbody>
+
+        <% for(i in users){ %>
+        <tr>
+            <td><a ng-click="btn_openUser('<%- users[i].userid %>')"><%- users[i].userid %></a></td>
+            <td><%- users[i].firstname %></td>
+            <td><%- users[i].lastname %></td>
+            <td><%- users[i].email %></td>
+        </tr>
+        <% } %>
+
+        </tbody>
+    </table>
+
+
+
+</div>
+</body>
+</html>

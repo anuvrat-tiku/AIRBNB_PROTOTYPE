@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Your Listings - Airbnb</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+  <script type="text/javascript" src="./js/angular_controller.js" ></script>
+
+<style>
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+background-color:white;
+}
+
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.heading{
+  font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 25px;
+    line-height: 1.43;
+   color:#8f8f8f;
+    margin: 0 auto;
+        -webkit-font-smoothing: antialiased;
+}
+.photo{
+  margin-left: 170px;
+    }
+.left{
+ padding-left:5cm;
+ max-width:30%;
+float:left;
+
+}
+
+button {
+     background:none!important;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     cursor: pointer;
+}
+input[type="submit"] {
+background:#007a87;
+color:white;
+width:150px;
+height:40px;
+}
+.panel-default {
+
+  width:850px;
+    
+}
+.header {
+  right:10px;
+  position:absolute;
+  z-index: 90;
+}
+nav{
+  z-index:1;
+}
+.photo{
+  position:absolute;
+  top:1px;
+  left:1px;
+}
+.mess{
+
+
+
+ border: none;
+ color: white;
+ padding: 10px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+
+
+ cursor: pointer;
+
+}
+</style>
+
+</head>
+<body ng-app="airbnbapp_ng">
+  <div class="container-fluid">
+    <div id="header_menu"></div>
+<script type="text/javascript" src="./js/header.js"></script>
+<div id="navMenu"></div>
+<script type="text/javascript" src="./js/nav_bar.js"></script>
+<div class="left">
+
+
+<b><a href="/host_messages" style="color:#484848;">Hostings</a></b><br /> <br />
+<div class="panel panel-default" ng-controller="messagectrl_ng">
+    <div class="panel-body"><span style="text-align:center;" ng-if="messages==null">No messages yet.</span>
+    <span style="text-align:center;" ng-if="messages!=null">
+      <span ng-repeat="message in messages">
+        {{message.UserName}} has requested to book {{message.property_name}} from {{message.checkin}} to {{message.checkout}}
+       <div ng-if="message.message_read=='no'">
+         <a ng-click="deny_ng(message.message_id)" class="btn btn-danger" style="float:right;"> Deny</a>
+         <a class="btn btn-success" style="float:right;" ng-click="accept_ng(message.message_id)"> Accept</a>
+        </div> 
+        <span ng-if="message.message_read=='yes'">
+         <p class=" btn btn-warning mess" style="float:right;height:30px;width:100px; text-align: center;">{{message.status}}</p>
+        </span> 
+        <br><hr />
+      </span>
+    </span>
+    </div>
+</div>
+
+</div>
+
+
+
+
+  
+
+</div> 
+
+
+</body>
+</html>
+

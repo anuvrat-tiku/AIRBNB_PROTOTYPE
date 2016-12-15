@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<head>
+    <style>
+        div.logo {
+            position: fixed;
+            top: 5px;
+            left: 20px;
+        }
+        div.fixedImage {
+
+            top: 130px;
+            left: 160px;
+        }
+
+        #searchID {
+            border-color: #ff5a5f;
+            background-color: #ff5a5f;
+            color: #fff;
+        }
+        .a{
+            background:none!important;
+            border:none;
+            padding:0!important;
+            font: inherit;
+            cursor: pointer;
+        }
+
+
+
+    </style>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <script src="angularjs/admin.js"></script>
+
+</head>
+<body ng-app="admin" ng-controller="inactiveUsers_ab">
+
+<a href="/success_Admin_ab"><img src="airbnb.png" width="40" height="50" style="float:left;padding-top:0.5cm;"></a>
+<div class="pull-right">
+    <button type="button" class="a" onclick="window.location.href='/checkInactiveHosts_ab'" style="font-size:18px;">Messages<span class="badge" style="color: #ffffff; background-color: #00a699; font-size: 10px"><%- inactive %></span></button>
+</div>
+
+<br><br><br /><br />
+<h3 style="text-align:center;">Messages</h3>
+<hr />
+<br />
+<div class="row">
+
+    <div class="col-md-2">
+
+    </div>
+
+    <div class="col-md-8 well">
+
+        <div class="row">
+            <div ng-show="declinedDone" style="color:red"><span class="glyphicon glyphicon-exclamation-sign" style="color:  palevioletred; font-size: 13px"></span>Host Notified about request decline.</div>
+            <div ng-show="acceptedDone" style="color:red"><span class="glyphicon glyphicon-ok-sign" style="color:  palevioletred; font-size: 13px"></span>Host Accepted and Notified.</div>
+        </div>
+
+        <% if(!inactive > 0) { %>
+
+        <div class="row well">
+            No Pending hosts Requests
+        </div>
+
+        <% } else { %>
+
+        <% for(i in inactiveHosts) {%>
+        <div class="row">
+
+            <div class="col-md-8">
+                <font size="3">A new Host with email address <a><%- inactiveHosts[i].email %></a> has requested to Sign Up</font>
+                <br>
+            </div>
+
+            <div class="col-md-4">
+                <button type="button" style="height: 38px; background-color:seagreen " class="btn btn-lg" ng-click="btn_acceptHost_ab('<%- inactiveHosts[i].hostid %>')">Accept</button>
+                &nbsp;&nbsp;&nbsp;
+                <button type="button" style="height: 38px; background-color:indianred " class="btn btn-lg" ng-click="btn_declineHost_ab('<%- inactiveHosts[i].hostid %>')">Decline</button>
+                <br>
+            </div>
+        </div>
+        <br>
+        <% } %>
+
+        <% } %>
+
+
+
+
+    </div>
+</div>
+
+
+
+</body>
+</html>

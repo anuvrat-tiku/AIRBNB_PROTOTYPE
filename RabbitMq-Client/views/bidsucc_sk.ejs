@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<head>
+    <style>
+        div.logo {
+            position: fixed;
+            top: 5px;
+            left: 20px;
+        }
+        div.fixedImage {
+
+            top: 130px;
+            left: 160px;
+        }
+        #searchID {
+            border-color: #ff5a5f;
+            background-color: #ff5a5f;
+            color: #fff;
+        }
+
+    </style>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="angularjs/index.js"></script>
+
+</head>
+
+<body ng-app="bidT" ng-controller="bidTController">
+
+
+
+<!---->
+<div class="container-fluid">
+
+    <div class ="row">
+        <div class="col-md-1">
+            <img src="https://static.dezeen.com/uploads/2014/07/Airbnb-rebrand-by-DesignStudio_dezeen_468_8.jpg" width="120" height="60" align="left">
+        </div>
+
+
+
+
+
+
+
+        <div class="container">
+            <div class = "row">
+                <div class="col-md-12 col-md-offset-3">
+
+                </div></div></div> <br> <br>
+        <!--   <font size="2" color ="black"><small>Birthday {{birthday}}  |&nbsp&nbsp Contact {{Phone}} |&nbsp&nbsp Member since {{Joining}} | <span class="glyphicon glyphicon-map-marker"></span>&nbsp&nbspUnited States</font></small>
+     </div></div></div> <br> <br> -->
+
+
+
+        <div class="container">
+            <div class ="row">
+                <div class="container">
+
+                    <!-- Random:  ng-pattern for email ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" -->
+                    <!-- 3 offset columns to get the well in the center -->
+                    <div class="col-md-1"></div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-1"></div>
+
+                    <!-- Define the two tabs -->
+                    <div class="col-md-6">
+                        <div class="well" id="well" style="border-style: ridge;">
+
+                            <!-- Add a green filled tick glyphicon -->
+                            <div class="nobr">
+                                <span class="glyphicon glyphicon-ok-circle white" style="color:	indianred; font-size: 50px; "> </span>
+                                <p style="color: indianred">
+                                    <%= user %>!, Your bid of amount $ <%= price %> has been accepted.
+                                </p>
+                            </div>
+                            <p> There is still time left for bidding on this product</p>
+                            <p>We would update you if you win the bid and your booking is confirmed when the bidding period ends</p>
+                            
+
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            &nbsp&nbsp
+                            <p>OR </p>
+
+                            <p>Please click on Continue for bidding higher amount </p>
+
+
+
+
+
+
+                            <a href="/homepage_sk"><p><button style="height: 35px;" class="btn btn-danger btn-block"> Continue Booking</button> </p>
+
+
+                        </div>
+                        <br />
+
+
+
+                        <!-- End of row div element -->
+                    </div>
+                </div>
+            </div>
+</body>
+</html>

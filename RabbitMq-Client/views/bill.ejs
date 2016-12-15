@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bill - Airbnb</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet"
+          href="bower_components/chartist/dist/chartist.min.css">
+             <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+<style>
+.left{
+ padding-left:2cm;
+float:left;
+}
+.right{
+padding-right:8cm;
+float:right;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+}
+.glyphicon,i{
+  font-size:30px;
+  color:#e6e6e6;
+}
+span{
+  color:#9d9ca0;
+  font-size:12px;
+}
+td{
+  width:60%;
+}
+</style>
+
+</head>
+<body background="#808080;">
+<div class="container-fluid" >
+<div class="left" >
+  <h3>Customer Receipt</h3>
+  <span style="color:#9d9ca0;font-size:15px;">CONFIRMATION CODE: 3WAM4Y</span><br /><br />
+  <!-- Insert timestamp -->
+  <span>WED, MARCH 07, 2012 <br />
+  <!-- Insert bill id -->
+  RECEIPT # <%= bill_id %></span> 
+
+ <hr width="400%"/>
+ <div class="col-lg-8">
+<span class="glyphicon glyphicon-user" > </span> &nbsp;&nbsp; &nbsp; <%= user_fname %><br />
+<span style="color:#9d9ca0;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  NAME</span>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+ </div>
+  <div class="col-lg-4" >
+<span class="glyphicon glyphicon-map-marker" ></span> &nbsp;&nbsp; &nbsp;<%= city %>, <%= state %><br />
+<span style="color:#9d9ca0;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;TRAVEL DESTINATION</span>
+ </div>
+<br />
+<hr width="400%"/>
+ <div class="col-lg-8">
+<span class="glyphicon glyphicon-road"></span> &nbsp; &nbsp; <%= apt %>, <%= street %>, <%= city %>, <%= state %> <%= zip %> <%= country %><br />
+<span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ACCOMODATION ADDRESS</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>
+ <div class="col-lg-4" >
+<span class="glyphicon glyphicon-home"></span> &nbsp; &nbsp;<%= prop_type %><br />
+<span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; PROPERTY</span><br /></div>
+<hr width="400%"/>
+
+
+
+<div class="col-lg-8">
+<span class="glyphicon glyphicon-equalizer"></span> &nbsp; &nbsp; <%= accom_type %><br />
+<span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ACCOMODATION TYPE</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>
+ <div class="col-lg-4" >
+<i class="fa fa-users" aria-hidden="true"></i> &nbsp; &nbsp;<%= no_guest %><br />
+<span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;GUESTS</span><br /></div>
+<hr width="400%"/>
+
+<div class="col-lg-8">
+<span class="glyphicon glyphicon-calendar"></span> &nbsp; &nbsp; <%= from_date %>, 12 PM(noon)<br />
+<span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; CHECK IN</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>
+ <div class="col-lg-4" >
+<span class="glyphicon glyphicon-calendar"></span> &nbsp; &nbsp;<%= to_date %>, 2012 12 PM(noon)<br />
+<span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;CHECKOUT</span><br /></div>
+<hr width="400%"/>
+
+<div class="col-lg-8">
+<i class="fa fa-moon-o" aria-hidden="true"></i> &nbsp; &nbsp; <%= duration %><br />
+<span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; NIGHTS</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>
+ <div class="col-lg-4" >
+<span class="glyphicon glyphicon-tasks"></span> &nbsp; &nbsp;$1000<br />
+<span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;SECURITY DEPOSIT</span><br /></div>
+<hr width="400%"/>
+
+<h3>Payment Details</h3>
+<table border="1" bordercolor="#eee" width="120%">
+  <tr>
+  <td>ACCOMODATIONS</td>
+  <td><b>&nbsp; &nbsp;$<%= total %>($<%= price %> per night)</b></td></tr>
+  <tr>
+  <td>AIRBNB SERVICE FEE</td>
+  <td><b>&nbsp; &nbsp;$300</b></td></tr>
+  <tr>
+  <td>AIRBNB CONCIERGE</td>
+  <td><b>&nbsp; &nbsp;Free</b></td></tr>
+  <td>TOTAL</td>
+  <td><b>&nbsp; &nbsp;$<%= full_total %></b></td></tr>
+
+  </table> <br />
+  <table border="1" bordercolor="#eee" width="120%">
+  <tr>
+  <td>PAYMENT RECEIVED:<br />  <%= bill_date %><br /> (AMERICAN EXPRESS XXXXXXXXXXXX1018)</td>
+  <td><b>&nbsp; &nbsp;$<%= fullandfinal_total %></b></td></tr>
+
+  </table><br />
+
+  <table border="1" bordercolor="#eee" width="120%">
+  <tr>
+  <td>DEPOSIT HELD</td>
+  <td><b>&nbsp; &nbsp;$1000</b></td></tr><br />
+
+
+  </table>
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp<img src="bar.png" width="320" style="text-align:center;"><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; THANK YOU FOR TRAVELLING WITH AIRBNB
+
+      
+      
+    
+</div>
+
+<div class="right" style="float:right;padding-top:1cm;padding-right:2cm;">
+  <span STYLE="color:#9d9ca0;">AIRBNB<br />
+  +1(415)800-5959<br />
+  WWW.AIRBNB.COM/CONTACT</span>
+
+  
+
+</div> 
+
+
+
+</body>
+</html>
+

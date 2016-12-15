@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<script    src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<head>
+    <style>
+        div.logo {
+            position: fixed;
+            top: 5px;
+            left: 20px;
+        }
+        div.fixedImage {
+
+            top: 130px;
+            left: 160px;
+        }
+
+        #searchID {
+            border-color: #ff5a5f;
+            background-color: #ff5a5f;
+            color: #fff;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            background-color:white;
+        }
+
+
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .header {
+            right:10px;
+            position:absolute;
+            z-index: 90;
+        }
+        .dropbtn{
+            background:none!important;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     cursor: pointer;
+        }
+
+
+    </style>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <script>
+        $(document).ready(function(){
+
+
+
+        });
+    </script>
+
+    <script src="angularjs/billSrch_sk.js"></script>
+
+</head>
+<body ng-app="bilsrch">
+
+<div ng-controller="billSearch_sk">
+    <div id="header_menu"></div>
+    <script type="text/javascript" src="./js/user_header.js"></script>
+    <br /><br /><br /><hr />
+    <h3>Search Bills</h3><br /><br />
+    Search Bills by:
+    <select ng-model="search">
+        <option ng-repeat="x in searchCriteria" value="{{x.model}}">{{x.model}}</option>
+    </select>
+
+
+
+    <div ng-show="invalidDate" style="color:red">Invalid date. Date should be between 1 and 31. </div>
+    <div ng-show="invalidMonth" style="color:red">Invalid Month. Month should be between 1 and 12. </div>
+    <div ng-show="invalidYear" style="color:red">Invalid Year. Year should be between 2012 and 2016. </div>
+
+    <br>
+    <br><input type="text" id="searchInput" ng-model="billSearch" size="80" placeholder="Enter Search Criteria"><br>
+    <br>
+
+    <button type="button" id="searchID" style="height: 35px;" class="btn btn-primary" ng-click="btn_searchBills_ab()">Search bills</button>
+
+    <br>
+    <br>
+
+</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Become a Host and Rent Out Your Room, House or Apartment on Airbnb</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<style>
+.button3{
+background:#ff5a5f;
+height:46px;
+width:550px;
+ border: none;
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 15px;
+ margin: 4px 2px;
+ cursor: pointer;
+}
+
+#login{
+outline:  1px solid #ff5a5f;
+float:right;
+}
+input[type="email"] {
+    height:46px;
+width:550px;
+outline:  1px solid #aaaaaa;
+}
+input[type="password"] {
+    height:46px;
+width:550px;
+outline:  1px solid #aaaaaa;
+}
+input[type="submit"] {
+  background:#ff5a5f;
+  padding: 10px;
+  display: block;
+  width: 185px;
+  height:60px;
+  border: none;
+  color: #fff;
+  font-size:16px;
+  border-radius: 5px;
+}
+input[type="text"] {
+ width:370px;
+ height:40px;
+}
+
+.heading{
+  font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 25px;
+    line-height: 1.43;
+    color: #484848;
+    margin: 0 auto;
+}
+.photo{
+  padding-left: 2cm;
+    }
+#ex1{
+  background:#00a699;
+}
+#right{
+  background-color:#fafafa;
+  
+}
+.head{
+
+  background:#FFFFFF;
+}
+.main{
+  padding-left: 5cm;
+  padding-right:5cm;
+}
+
+.panel-default {
+  height: 390px; 
+  width:300px;
+  padding-right:2cm;
+}
+p.dashed {
+border-style: dashed;
+color:#bbbbbb;
+}
+.center{
+ left: 43%;
+    position: fixed;
+    top: 50%;
+}
+
+</style>
+
+</head>
+<body>
+<div class="container-fluid">
+  <div class="head">
+  <a href="/host_home">
+<img src="air1.png" width="120" height="65"> 
+</a> &nbsp &nbsp Step 2: Set the scene<br />
+<hr /></div>
+ <br /> 
+ <div class="main">
+ <div style="
+    font-size: 22px;
+    line-height: 1.43;
+    color: #484848;"> Show travelers what your space looks like</div> <br /> <br /> 
+   
+ <form action="/uploadpropertyimg" method="POST" enctype="multipart/form-data" >
+   <p class="dashed" style="width:870px;height:380px;">
+<span class="center"> 
+<input id="upload-input" type="file" name="file" size="50" multiple="multiple" />
+<input type="submit" value="Upload photos"> <br /> &nbsp &nbsp &nbsp &nbsp &nbsp  
+<span style="color: #484848;font-size:16px;">or drag them in </span> </span>
+</p>
+<hr />
+</form> <br /> <br />
+<a href="/step2" style="color:#989898;float:left;"><i class="fa fa-arrow-left"></i>&nbsp Back</a>
+<a href="/step2_editDescription"><button class="btn btn-default" style="float:right;width:180px;">Skip for now</button></a>
+</div>
+</div>
+  
+
+
+
+</body>
+</html>
+

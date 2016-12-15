@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Profile - Airbnb</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+  <script type="text/javascript" src="./js/angular_controller.js" ></script>
+
+<style>
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+background-color:white;
+}
+
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.main{
+ 
+}
+.heading{
+  font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 25px;
+    line-height: 1.43;
+   color:#8f8f8f;
+    margin: 0 auto;
+        -webkit-font-smoothing: antialiased;
+}
+.photo{
+  margin-left: 170px;
+    }
+.left{
+ padding-left:2cm;
+ max-width:30%;
+float:left;
+
+}
+.right{
+padding-left:7cm;
+}
+button {
+     background:none!important;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     cursor: pointer;
+}
+input[type="submit"] {
+background:#ff5a5f;
+color:white;
+width:150px;
+height:40px;
+}
+input[type="text"] {
+width:400px;
+height:30px;
+}
+input[type="email"] {
+width:400px;
+height:30px;
+}
+.panel-default {
+
+  width:730px;
+height:470px;
+  
+}
+.header {
+  right:10px;
+  position:absolute;
+  z-index: 90;
+}
+nav{
+  z-index:1;
+}
+</style>
+
+</head>
+<body ng-app="airbnbapp_ng">
+<div class="container-fluid">
+<div id="header_menu"></div>
+<script type="text/javascript" src="./js/header.js"></script>
+<div id="navMenu"></div>
+<div class="left">
+<b><a href="/host_profile" style="color:#484848;">Edit Profile</a></b><br /><br />
+<a href="/host_media" style="color:#484848;">Photos and Videos</a><br /> <br />
+<a href="/host_review" style="color:#484848;">Reviews</a><br /> <br />
+</div>
+
+<div class="right" ng-controller="profilectrl_ng">
+  <form>
+<div class="panel panel-default">
+    <div class="panel-heading">Required</div>
+    <div class="panel-body" >
+
+First Name &nbsp <input type="text" name="first" ng-model="profiledata.fname"> <br /> <br />
+Last name &nbsp &nbsp<input type="text" name="last" ng-model="profiledata.lname"><br /><br /> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+&nbsp &nbsp&nbsp &nbsp &nbsp
+
+<span style="color:#777777;">This is only shared once you have a confirmed booking with another Airbnb user.</span> <br /> <br />
+&nbsp &nbsp &nbsp &nbsp &nbsp  I am &nbsp &nbsp <select class="selectpicker " name="gender" ng-model="profiledata.gender">
+  <option title="male" value="male">Male</option>
+  <option title="female" value="female">Female</option>
+</select> <br /> <br />&nbsp &nbsp &nbsp &nbsp &nbsp
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+<span style="color:#777777;">We use this data for analysis and never share it with other users.</span> <br /> <br />
+Birth Date &nbsp &nbsp &nbsp  <input type="text" name="birth" ng-model="profiledata.dob"><br /><br />
+
+Email Address <input type="email" name="email" ng-model="profiledata.email"><br /><br />
+<span style="color:#777777;">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp We won’t share your private email address with other Airbnb users. </span>
+<br /><br />Phone Number <input type="text" name="phone" ng-model="profiledata.phone"><br />
+
+
+
+</div>
+  </div>
+  <input type="submit" value="Save" class="btn" ng-click="updateprofile_ng()">
+</div>
+
+
+  
+
+</div> 
+
+<script type="text/javascript" src="./js/nav_bar.js"></script>
+</body>
+</html>
+

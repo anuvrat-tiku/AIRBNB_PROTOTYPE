@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<head>
+    <style>
+        div.logo {
+            position: fixed;
+            top: 5px;
+            left: 20px;
+        }
+        div.fixedImage {
+
+            top: 130px;
+            left: 160px;
+        }
+
+        #searchID {
+            border-color: #ff5a5f;
+            background-color: #ff5a5f;
+            color: #fff;
+        }
+
+
+
+    </style>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <script>
+        $(document).ready(function(){
+
+
+
+        });
+    </script>
+
+    <script src="angularjs/admin.js"></script>
+
+</head>
+<body ng-app="admin">
+<img src="https://a1.muscache.com/airbnb/static/icons/android-icon-192x192-c0465f9f0380893768972a31a614b670.png" onclick="window.location.href='/success_Admin_ab'" width="30px" height="30px">
+<br />
+<h2>Search Bills</h2><hr /><br />
+<div ng-controller="billSearch_ab">
+    Search Bills by:
+    <select ng-model="search">
+        <option ng-repeat="x in searchCriteria" value="{{x.model}}">{{x.model}}</option>
+    </select><br />
+
+
+
+    <div ng-show="invalidDate" style="color:red">Invalid date. Date should be between 1 and 31. </div>
+    <div ng-show="invalidMonth" style="color:red">Invalid Month. Month should be between 1 and 12. </div>
+    <div ng-show="invalidYear" style="color:red">Invalid Year. Year should be between 2012 and 2016. </div>
+
+    <br>
+    <br><input type="text" id="searchInput" ng-model="billSearch" size="80" style="height:40px;" placeholder="Enter Search Criteria"><br>
+    <br> <br />
+
+    <button type="button" id="searchID" style="height: 35px;" class="btn btn-primary" ng-click="btn_searchBills_ab()">Search bills</button>
+
+    <br>
+    <br>
+
+</div>
+
+
+
+
+</body>
+</html>

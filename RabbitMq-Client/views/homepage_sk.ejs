@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<head>
+
+    <style>
+
+        #top_navbar_row{
+            border-right: 1px solid #dce0e0;
+            top: 20px;
+        }
+
+        .glyphicon.glyphicon-search{
+            font-size: 30px;
+
+        }
+
+        #search_bar{
+            border: none;
+            outline: none;
+        }
+
+
+        body {
+            padding: 50px;
+            font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+        }
+
+        a {
+            color: #00B7FF;
+        }
+
+
+
+        .img2
+        {
+            border: 2px solid #0f0;
+            position: relative;
+            z-index: 2;
+            top: -40px;
+            right: -280px;
+        }
+
+        .img1
+        {
+
+            position: absolute;;
+            z-index: 1;
+            top: 12px;
+            left: 12px;
+
+        }
+
+        .img4
+        {
+            border: 2px solid #0f0;
+            position: relative;
+            z-index: 2;
+            top: -40px;
+            right: -280px;
+        }
+
+        .img3
+        {
+
+            position: absolute;;
+            z-index: 1;
+            top: 12px;
+            left: 12px;
+
+        }
+
+        .inner-addon {
+            position: relative;
+        }
+
+        /* style icon */
+        .inner-addon .glyphicon {
+            position: absolute;
+            padding: 10px;
+            pointer-events: none;
+        }
+
+        /* align icon */
+        .left-addon .glyphicon  { left:  0px;}
+        .right-addon .glyphicon { right: 0px;}
+
+        /* add padding  */
+        .left-addon input  { padding-left:  30px; }
+        .right-addon input { padding-right: 30px; }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            background-color:white;
+        }
+
+
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        button {
+            background:none!important;
+            border:none;
+            padding:0!important;
+            font: inherit;
+            cursor: pointer;
+        }
+        .header {
+            right:10px;
+            position:absolute;
+            z-index: 90;
+        }
+
+    </style>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="angularjs/propertysk.js"></script>
+
+</head>
+
+<body ng-app="propertysk" ng-controller="propsk">
+<!--<div class="container"> -->
+<div id="header_menu"></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="glyphicon glyphicon-search" aria-hidden="true">
+      </span>
+&nbsp;&nbsp;
+<!-- Transparent Search bar consistent with Airbnb -->
+<font size="3"color="gray"><input type="text" name="search_bar" id="search_bar" value="<%= dest2 %>" placeholder= "Search" ng-model="Search" ng-init="Search='<%- dest2 %>'" /> </font>
+<script type="text/javascript" src="./js/user_header.js"></script>
+
+
+<!--</div> -->
+<hr />
+
+<!-- Beginning of the row class -->
+<div class="row">
+
+    <!-- Column md-8 for the left portion of the screen -->
+    <div class="col-md-8">
+        <div class ="row">
+            <div ng-show="noPropertyExists">
+                <div class="alert alert-danger">
+                    <span class="glyphicon glyphicon-exclamation-sign" style="color:  #C0C0C0; font-size: 25px"></span>No Properties found for given dates and location.
+                </div>
+            </div>
+            <div ng-show="checkinGreater">
+                <div class="alert alert-danger">
+                    <span class="glyphicon glyphicon-exclamation-sign" style="color:  #C0C0C0; font-size: 25px"></span>Checkout date should be after checkin date.
+                </div>
+            </div>
+            <div ng-show="checkinCannotBeSame">
+                <div class="alert alert-danger">
+                    <span class="glyphicon glyphicon-exclamation-sign" style="color:  #C0C0C0; font-size: 25px"></span>Checkout cannot be same day as check in.
+                </div>
+            </div>
+            <div ng-show="checkinGreaterThanToday">
+                <div class="alert alert-danger">
+                    <span class="glyphicon glyphicon-exclamation-sign" style="color:  #C0C0C0; font-size: 25px"></span>CheckIn should be 2 days ahead atleast.
+                </div>
+            </div>
+            <!-- Dates from and to -->
+            <div class ="col-md-1">
+                Dates:
+            </div>
+
+            <input type="text"  style="width:200px;height:30px;" name="checkin2" id="checkin2" ng-model="checkin2" placeholder="MM/DD/YYYY" ng-init="checkin2='<%- checkin2 %>'">
+            &nbsp;&nbsp;
+
+
+            <input type="text" style="width:200px;height:30px;" value="<%= checkout2 %>" name="checkout2" id="checkout2" ng-model="checkout2" placeholder="MM/DD/YYYY" ng-init="checkout2='<%- checkout2 %>'">
+            &nbsp;&nbsp;
+
+
+            <input type="text" style="width:200px;height:30px;" value="<%= guest2 %> guest" name="guest2" id="guest2" ng-model="guest2" placeholder="1 guest" ng-init="guest2='<%- guest2 %>'">
+
+            <br>
+            <div ng-show="invalidcheckin" style="color:red">Please enter a valid Checkin Date.</div>
+            <div ng-show="invalidcheckout" style="color:red">Please enter a valid Checkout Date.</div>
+        </div>
+
+
+
+
+        <hr />
+
+        <!-- Room types -->
+        <div class ="row">
+            <div class ="col-md-2">
+                Room Types<span class="glyphicon glyphicon-question-sign"></span>
+            </div>
+            <!--  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+
+
+            <!--<<div class="inner-addon left-addon">
+                <i class="glyphicon glyphicon-home"></i>
+                <input type="date" class="form-control" value="Entire Home" />
+            </div> -->
+            <!--    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+
+            <div class ="col-md-2 col-md-offset-1">
+                <span class="glyphicon glyphicon-folder-open"></span> Entire Room<input type="checkbox" id="cb1" ng-model="check" ng-change="checkAll(check)" ng-true-value="'Entire Place'" ng-false-value="' '" />
+
+            </div>
+
+            <div class ="col-md-2 col-md-offset-1">
+                <span class="glyphicon glyphicon-folder-open"></span> Private Room<input type="checkbox" id="cb1" ng-model="check1" ng-change="checkAll(check1)" ng-true-value="'Private Room'" ng-false-value="' '" />
+
+            </div>
+            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+            <div class ="col-md-2 col-md-offset-1">
+                <span class="glyphicon glyphicon-folder-open"></span> Shared Room<input type="checkbox" id="cb1" ng-model="check2" ng-change="checkAll(check2)" ng-true-value="'Shared Room'" ng-false-value="' '" />
+
+            </div>
+
+        </div>
+        <!-- Price range -->
+        <hr />
+        Price range
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <input type="range" name="price-min" id="price-min" value="200" min="0" max="400">
+        <label for="price-max">Price:</label>
+        <input type="range" name="price-max" id="price-max" value="800" min="0" max="120000">
+
+        <hr />
+        <button type="button" ng-click="btn_find()" class="btn btn-default" style="width:50px;height:30px;">Filter</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <font size="3"color="#deb887"> 300+ Rentals.  <%- myresult[0].city %> </font>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+        Use the Instant Book filter to see places you can book right now. </br>
+        <font size="2"color="gray"><span class="glyphicon glyphicon-usd"></span>Additional fees apply. Taxes may be added. </font><br><br>
+        <% for(i in myresult) { %>
+        <!-- Div element for room image, details, etc. -->
+
+        <!-- There will be (col-md-6)X2 for rooms to be displayed in 2 columns -->
+
+        <div class="col-md-6">
+            <img src="<%= myresult[i].coverimgname %>" class=" img-responsive" alt="Cinque Terre" width="560" height="250">
+            <img src="<%= myresult[i].hostimgname %>" class ="img2 img-circle" alt="Cinque Terre" width="80" height="80">
+
+            <p> <a ng-click="showDetail('<%- myresult[i].property_id%>');"><font size="4"color="black"> <%- myresult[i].guest_place %> near  <%- myresult[i].nearbyloc%>,   <%- myresult[i].city%></font> </br>
+                    <font size="3"color="#deb887"> <%- myresult[i].placename%>.  <%- myresult[i].guest%> place </font></a></br>
+                <a ng-click="bidDetail('<%- myresult[i].property_id%>');" ng-show="'<%- myresult[i].bid%>' == 1" ><font size="3"color="#deb887"><Strong><b>Property on bid </b></Strong></font></a> </p>
+        </div>
+
+        <% } %>
+    </div>
+
+    <!-- Right part of the screen reserved for the map -->
+    <div class="col-md-4">
+        <script src='https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyB-7U6qTUfJE-_NBItfrn81VTRM3ZPrLKA'>
+
+        </script>
+        <div style='overflow:hidden;height:1500px;width:450px;'>
+            <div id='gmap_canvas' style='height:1500px;width:450px;'>
+
+            </div><style>
+                #gmap_canvas img{max-width:none!important;background:none!important}
+            </style></div> <a href='https://addmap.net/'>https://addmap.net</a>
+        <script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=1f4edbca13e40906b40b73f6869d3a7e1e6e9b47'>
+
+        </script>
+        <script type='text/javascript'>
+            function init_map()
+            {
+                var myOptions =
+                {
+                    zoom:13,
+                    center:new google.maps.LatLng('<%= myresult[0].xcoord %>','<%= myresult[0].ycoord %>'),
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
+
+
+                <%for (i in myresult){%>
+
+                marker = new google.maps.Marker({
+                    map: map,
+                    position: new google.maps.LatLng('<%= myresult[i].xcoord %>','<%= myresult[i].ycoord %>')
+                });
+                // infowindow = new google.maps.InfoWindow({
+                //     content:'<%= myresult[i].placename %>'
+                // });
+                <% } %>
+                google.maps.event.addListener(marker, 'click',
+                        function(){
+                            infowindow.open(map,marker);
+                        });
+                infowindow.open(map,marker);
+            }
+            google.maps.event.addDomListener(window, 'load', init_map);
+
+
+        </script>
+    </div>
+    <!-- End of map col-md-4 -->
+
+    <!-- End of div row -->
+</div>
+
+<!-- End of main container -->
+
+
+</body>
+</html>

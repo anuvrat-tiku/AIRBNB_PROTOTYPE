@@ -1,0 +1,111 @@
+<!-- views/partials/header.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <style>
+        div.logo {
+            position: fixed;
+            top: 5px;
+            left: 20px;
+        }
+
+
+
+
+    </style>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<div class="row">
+    <div class="logo">
+        <img src="https://a1.muscache.com/airbnb/static/icons/android-icon-192x192-c0465f9f0380893768972a31a614b670.png" width="30px" height="30px">
+    </div>
+
+
+    <div class="pull-right">
+
+        <button type="button"class="btn btn-default">Become a Host</button>
+        <button type="button"class="btn btn-default">Trips</button>
+        <button type="button"class="btn btn-default">Messages</button>
+        <button type="button"class="btn btn-default">Help</button>
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-user" style="color:  #FFFFF; font-size: 15px"></span>
+            </button>
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="/editProfile_ab">Edit Profile</a></li>
+                <li><a href="/changePassword_ab">Change Password</a></li>
+                <li><a href="/logout_ab">Log out</a></li>
+                <li><a data-toggle="modal" data-target="#deleteModal">Delete my Account</a></li>
+
+            </ul>
+        </div>
+
+        <!-- Modal -->
+
+        <div class="modal fade" id="deleteModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="text-align:center;">Delete Account</h4>
+                    </div>
+
+                    <div class="container-fluid">
+                        <br>
+
+                        <div class="modal-body">
+
+                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                            Are you sure?
+
+                            <br><br>
+
+                            <button type="button" class="btn btn-default" onclick="window.location.href='/deleteUser_ab'">Yes</button>
+                            <button type="button" class="btn btn-default" onclick="window.location.href='/homepage'">No</button>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal end -->
+
+    </div><!-- button group pull right -->
+</div>
+
+
+<nav class="navbar navbar-default navbar-custom">
+    <div class="container-fluid">
+
+        <ul class="nav navbar-nav">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Inbox</a></li>
+            <li><a href="#">Your Listings</a></li>
+            <li><a href="#">Your Trips</a></li>
+            <li class="active"><a href="#">Profile</a></li>
+            <li><a href="#">Account</a></li>
+            <li><a href="#">Refer A friend</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+</body>
+</html>

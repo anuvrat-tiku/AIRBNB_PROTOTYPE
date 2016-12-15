@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Your Listings - Airbnb</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script type="text/javascript" src="./js/angular_controller.js" ></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<style>
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+background-color:white;
+}
+
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.main{
+ 
+}
+.heading{
+  font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 25px;
+    line-height: 1.43;
+   color:#8f8f8f;
+    margin: 0 auto;
+        -webkit-font-smoothing: antialiased;
+}
+.photo{
+  margin-left: 170px;
+    }
+.left{
+ padding-left:3cm;
+ max-width:30%;
+float:left;
+
+}
+.right{
+padding-left:9cm;
+}
+button {
+     background:none!important;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     cursor: pointer;
+}
+input[type="submit"] {
+background:#007a87;
+color:white;
+width:150px;
+height:40px;
+}
+.panel-default {
+
+  width:780px;
+  
+}
+.header {
+  right:10px;
+  position:absolute;
+  z-index: 90;
+}
+nav{
+  z-index:1;
+}
+</style>
+
+</head>
+<body ng-app="airbnbapp_ng">
+<div class="container-fluid">
+<div id="header_menu"></div>
+<script type="text/javascript" src="./js/header.js"></script>
+<div id="navMenu"></div>
+<div class="left">
+<b><a href="/host_home" style="color:#484848;">Your Listings</a></b><br /><br />
+<a href="#" style="color:#484848;">Your Reservations</a><br /> <br />
+<form method="GET" action="/hostbegin">
+  <input type="submit" value="Add New Listings" class="btn btn-primary">
+</form>
+
+</div>
+
+<div class="right" ng-controller="homectrl_ng">
+<div class="panel panel-default" ng-repeat="listing in listings">
+    <div class="panel-heading">{{listing.placename}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a ng-click="deletelisting_ng(listing)"><button type="button" class="close" data-dismiss="modal">&times;</button></a></div>
+    <div class="panel-body">
+<img src={{listing.coverimgname}} width="300" height="200" style="float:left;">
+<div class="text" style="float:right;padding-right:5cm;">
+<b>{{listing.guest_place}} in {{listing.address}}</b>
+
+<br /><br /><br />
+<a ng-href="/preview?propid={{listing.property_id}}"><button class="btn btn-default" style="width:80px;height:30px;padding-right:5cm;">Preview</button></a>
+</div>
+
+</div>
+<hr />
+  </div>
+</div>
+</div> 
+
+<script type="text/javascript" src="./js/nav_bar.js"></script>
+</body>
+</html>
+

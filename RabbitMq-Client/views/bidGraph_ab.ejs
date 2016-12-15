@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<head>
+    <style>
+        div.logo {
+            position: fixed;
+            top: 5px;
+            left: 20px;
+        }
+        div.fixedImage {
+
+            top: 130px;
+            left: 160px;
+        }
+
+        #searchID {
+            border-color: #ff5a5f;
+            background-color: #ff5a5f;
+            color: #fff;
+        }
+    </style>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
+
+    <link rel="stylesheet"
+          href="bower_components/chartist/dist/chartist.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <script src="angularjs/admin.js"></script>
+
+</head>
+<body ng-app="admin" ng-controller="bills_ab">
+<header>
+    <% include ./user_adminheader_ab.ejs %>
+</header>
+<hr />
+<script src="bower_components/chartist/dist/chartist.min.js"></script>
+<div class="col-lg-4" style="width:350px; height:350px;padding-left:2cm">
+    <div class="ct-chart ct-perfect-fourth" style="width:400px;height:400px;"></div>
+    <script type="text/javascript">
+        var data = {
+            // A labels array that can contain any sort of values
+            labels: [
+
+                <% for(i in bidUsers){ %>
+                "<%- bidUsers[i] %>",
+                <%  } %>
+            ],
+            series: [
+                [
+
+                    <% for(i in bidValues){ %>
+                    "<%- bidValues[i] %>",
+                    <%  } %>
+                ]
+            ]
+        };
+
+        new Chartist.Line('.ct-chart', data);
+    </script>
+    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  Bid Graph
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+    <style>
+        #top_navbar_row{
+            border-right: 1px solid #dce0e0;
+            top: 20px;
+        }
+
+        .glyphicon.glyphicon-search{
+            font-size: 30px;
+            top: 10px;
+        }
+
+        #search_bar{
+            border: none;
+            outline: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            background-color:white;
+        }
+
+
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+
+        .header {
+            right:10px;
+            position:absolute;
+            z-index: 90;
+        }
+
+
+
+        .view_photos_button {
+            position: absolute;
+            top: 550px;
+            left: 40px;
+        }
+
+        .description {
+
+            color: black;
+            font-size: 34px;
+        }
+
+
+
+        span.stars, span.stars span {
+            display: block;
+            background: url("images/Star.png") 0 -16px repeat-x;
+            width: 80px;
+            height: 16px;
+        }
+
+        span.stars span {
+            background-position: 0 0;
+        }
+
+        #booking_well {
+            background : transparent;
+        }
+
+        .previous_image {
+            position: absolute;
+            top : 300px;
+            left:10px;
+        }
+
+        .next_image {
+            position: absolute;
+            top : 300px;
+            right: 19px;
+        }
+
+        .mySlides {
+            width: 100%;
+            height: 602px;
+        }
+
+        .img-circle1 {
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+        }
+        .dropbtn{
+            background:none!important;
+    border:none;
+    padding:0!important;
+    font: inherit;
+    cursor: pointer;
+        }
+
+
+    </style>
+    <title><%= title %></title>
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.js"
+            integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+            crossorigin="anonymous">
+
+    </script>
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <!-- Angular JS -->
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- CDN for extra glyphicons -->
+    <script src="https://use.fontawesome.com/5cdf732636.js"></script>
+
+
+    <!-- Ionic icons -->
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+    <!-- Script to generate rating stars -->
+    <script>
+        $.fn.stars = function() {
+            return $(this).each(function() {
+                // Get the value
+                var val = parseFloat($(this).html());
+                val = Math.round(val * 4) / 4; /* To round to nearest quarter */
+                // Make sure that the value is in 0 - 5 range, multiply to get width
+                var size = Math.max(0, (Math.min(5, val))) * 16;
+                // Create stars holder
+                var $span = $('<span />').width(size);
+                // Replace the numerical value with stars
+                $(this).html($span);
+            });
+        }
+    </script>
+    <script src="angularjs/details_sk.js"></script>
+</head>
+
+
+<body ng-app="detailsk" ng-controller="detsk">
+<div class="container-fluid">
+    <div id="header_menu"></div>
+    <script type="text/javascript" src="./js/user_header.js"></script>
+    <br /><br /><hr />
+
+
+    <!-- Beginning of the row div class for property description-->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="cover-image">
+                <!-- Cover Image for the background image -->
+                <!-- Cover Image will also show the like for the lside show -->
+                <div class="w3-content w3-display-container">
+                    <!-- <img class="mySlides" src= "/images/berlin.png" alt="cover image" style="width: 1720px; height: 602px"> ** -->
+                    <% for(i in propnames){ %>
+                    <img class="mySlides" src= "<%= propnames[i] %>" alt="cover image" >
+                    <% } %>
+                    <!-- <img class="mySlides" src="images/slideshow/1.jpg" alt="cover image" >
+                    <img class="mySlides" src="images/slideshow/2.jpg" alt="cover image" >
+                    <img class="mySlides" src="images/slideshow/3.jpg" alt="cover image" >
+                    <img class="mySlides" src="images/slideshow/4.jpg" alt="cover image" >
+                    <img class="mySlides" src="images/slideshow/5.jpg" alt="cover image" >
+                    <img class="mySlides" src="images/slideshow/6.jpg" alt="cover image" >
+                    <img class="mySlides" src="images/slideshow/7.jpg" alt="cover image" >
+                    <img class="mySlides" src="images/slideshow/8.jpg" alt="cover image" >
+                    <img class="mySlides" src="images/slideshow/9.jpg" alt="cover image" >
+                    <img class="mySlides" src="images/slideshow/10.jpg" alt="cover image" > -->
+
+                    <a class="previous_image" onclick="plusDivs(-1)">
+                        <span class="glyphicon glyphicon-chevron-left" style="font-size: 40px; color: black;"></span>
+                    </a>
+                    <a class="next_image" onclick="plusDivs(1)">
+                        <span class="glyphicon glyphicon-chevron-right" style="font-size: 40px; color: black;"></span>
+                    </a>
+
+                </div>
+
+                <!-- Slideshow function -->
+                <script>
+                    var slideIndex = 1;
+                    showDivs(slideIndex);
+
+                    function plusDivs(n) {
+                        showDivs(slideIndex += n);
+                    }
+
+                    function showDivs(n) {
+                        var i;
+                        var x = document.getElementsByClassName("mySlides");
+                        if (n > x.length) {slideIndex = 1}
+                        if (n < 1) {slideIndex = x.length}
+                        for (i = 0; i < x.length; i++) {
+                            x[i].style.display = "none";
+                        }
+                        x[slideIndex-1].style.display = "block";
+                    }
+                </script>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <!-- Property Description begins -->
+    <div class="row">
+
+        <!-- Padding for 2 columns -->
+        <div class="col-md-1"></div>
+
+        <!-- Column md 4 description, images and other parameters -->
+        <div class="col-md-6">
+
+            <!-- Row-1 for description and image -->
+            <div class="row">
+
+                <!-- Col-md-9 for display picture -->
+                <div class="col-md-9">
+                    <div class="description">
+                        <%= property.description %>
+                    </div>
+                </div>
+
+                <!-- Col-md-3 for display picture -->
+                <div class="col-md-3">
+                    <img class="img-circle1" src= "<%= hostprofileimg %>" alt="profile picture">  <!-- ** -->
+                    <br />
+
+                    <font style="color: #767676;"><b><%= host.fname %></b></font>
+                </div>
+            </div>
+            <hr />
+
+
+            <div class="row">
+
+
+
+                <div class="col-md-3">
+                    <!-- Glyphicon 1 for Room type -->
+                    <span class="glyphicon glyphicon-home" style="font-size: 40px; color: lightgray; border: #767676;;"></span>
+
+                    <br />
+
+                    <font style="color: #767676;"><%= property.guest_place %></font>
+
+                </div>
+
+                <div class="col-md-3">
+                    <!-- Glyphicon 2 for number of guests -->
+                    <i class="fa fa-users" aria-hidden="true" style="font-size: 40px; color: lightgray; border: #767676;;"></i>
+                    <br />
+                    <font style="color: #767676;"><%= property.guest %></font>
+                </div>
+
+                <div class="col-md-3">
+                    <!-- Glyphicon 3 -->
+                    <i class="fa fa-clone" aria-hidden="true" style="font-size: 40px; color: lightgray; border: #767676;;"></i>
+                    <br />
+                    <font style="color: #767676;"><%= property.bedroom %></font>
+
+                </div>
+
+                <div class="col-md-3">
+                    <!-- Glyphicon 4 -->
+                    <i class="fa fa-bed" aria-hidden="true" style="font-size: 40px; color: lightgray; border: #767676;;"></i>
+                    <br />
+                    <font style="color: #767676;"><%= property.bed %></font>
+
+
+                </div>
+
+
+
+
+
+
+                <br />
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+            <hr />
+
+            <!-- The space details -->
+            <div class="row" style="color: #767676; font-size: 14px; ">
+                <!-- "The Space" column -->
+                <div class="col-md-4">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <b>The Space</b>
+                </div>
+                <div class="col-md-4">
+                    Accommodates: <b><%= property.guest %></b><br />
+                    Bathrooms: <b><%= property.bathroom %></b><br />
+                    Bedrooms: <b><%= property.bedroom %></b><br />
+                    Beds: <b><%= property.bed %></b><br />
+                </div>
+                <div class="col-md-4">
+                    Check In: <b>After 3 P.M.</b> <br />
+                    Check Out: <b>12 P.M.(noon)</b> <br />
+                    Property Type: <b>Apartment</b><br />
+                    Room Type: <b><%= property.place %></b><br />
+                </div>
+            </div>
+
+            <hr />
+
+            <!-- The amenities details -->
+            <div class="row" style="color: #767676;; font-size: 14px">
+                <!-- "The Ameneties" column -->
+                <div class="col-md-4">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <b>Amenities</b>
+                </div>
+                <div class="col-md-4">
+                    <i class="fa fa-cutlery"></i><b>Kitchen</b><br />
+                    <i class="fa fa-wifi"></i><b>WIFI</b><br />
+                    <i class="fa fa-car"></i><b>Parking</b><br />
+                    Smoking : <b><%= property.smoking %></b><br />
+                    Pets : <b><%= property.pets %></b><br />
+
+                </div>
+
+                <div class="col-md-4">
+                    <i class="fa fa-user-plus"></i><b>Family/kid friendly</b> <br />
+                    <i class="fa fa-television"></i></i><b>T.V.</b> <br />
+                    <i class="fa fa-glass"></i><b>Parking</b><br />
+                    <i class="fa fa-tencent-weibo"></i><b>Wired Internet</b><br />
+                    Infants : <b><%= property.infants %></b><br />
+                </div>
+
+            </div>
+
+            <hr />
+
+            <!-- The "Prices" md-row-->
+            <div class="row" style="color: #767676; font-size: 14px">
+
+                <!-- Column-md-4 for the Prices title -->
+                <div class="col-md-4">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <b>Prices</b>
+                </div>
+
+                <!-- Col-md-4 for the first column -->
+                <div class="col-md-4">
+                    Extra People : <b>No Charge</b><br />
+                    Cleaning Fee : <b>$38</b><br />
+                    Weekly Discount : <b>32%</b><br />
+                </div>
+
+                <!-- Col-md-4 for the second column -->
+                <div class="col-md-4">
+                    Monthly Discount : <b>37%>%</b><br/>
+                    Cancellation : <b><a href="https://www.airbnb.com/home/cancellation_policies#moderate">Moderate</a></b><br />
+                </div>
+            </div>
+
+            <hr />
+
+            <!-- The description md-row -->
+            <div class="row" style="color: #767676; font-size: 14px">
+
+                <!-- Column-md-4 for the Description title -->
+                <div class="col-md-4">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <b>Description</b>
+                </div>
+
+                <!-- Col-md-8 for the description content -->
+                <div class="col-md-8">
+                    <b>The Space</b><br />
+                    <%= property.description %>
+                    <br />
+                </div>
+
+            </div>
+
+            <hr />
+
+            <!-- The House rules md-row -->
+            <div class="row" style="color: #767676;; font-size: 14px">
+
+                <!-- Column-md-4 for the House Rules title -->
+                <div class="col-md-4">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <b>House Rules</b>
+                </div>
+
+                <!-- Col-md-8 for the rules content -->
+                <div class="col-md-8">
+                    Check in is after <b>3 P.M.</b><br />
+                </div>
+
+            </div>
+
+            <hr />
+
+            <!-- The safety features md-row -->
+            <div class="row" style="color: #767676;; font-size: 14px">
+
+                <!-- Column-md-4 for the Safety features title -->
+                <div class="col-md-4">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <b>Safety <br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Features</b></br>
+                </div>
+
+                <!-- Col-md-8 for the features content -->
+                <div class="col-md-8">
+                    Smoke Detector
+                </div>
+
+            </div>
+
+            <hr />
+
+            <!-- The availability md-row -->
+            <div class="row" style="color: #767676;; font-size: 14px">
+
+                <!-- Column-md-4 for the Safety features title -->
+                <div class="col-md-4">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <b>Availability</b>
+                </div>
+
+                <!-- Col-md-4 for the features content -->
+                <div class="col-md-4">
+                    <b>1 night</b> minimum stay
+                </div>
+
+                <!-- Col-md-4 for the calender -->
+                <div class="col-md-4">
+                    <b>View Calender</b>
+                </div>
+
+            </div>
+
+            <hr />
+
+            <!-- The guidebook md-row -->
+            <div class="row" style="color: #767676; font-size: 14px">
+
+                <!-- Col-md-4 for the things to to title -->
+                <div class="col-md-4">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <b>Guidebook</b>
+                </div>
+
+                <!-- Col-md-8 for the things to do content -->
+                <div class="col-md-8">
+                    <a href="https://www.airbnb.com/things-to-do/<%= property.city %>">
+                        Things to do in <%= property.city %>
+                    </a>
+                </div>
+
+            </div>
+
+            <br /><br /><br />
+
+            <!-- Start of the Ratings block in col-md-12 -->
+            <div class="row">
+                <div class="col-md-6" style="color: #767676;; font-size: 30px">
+                    &nbsp;&nbsp;
+                    <%= totalRatings.total %> Reviews
+                </div>
+                <div class="col-md-6">
+                    &nbsp;<span class="stars"><%= totalRatings.average %>
+    </span>
+                </div>
+            </div>
+            <hr />
+
+            <!-- Indivisual rating parameters -->
+            <div class="row">
+                <!-- Cleanliness and Communication -->
+                <div class="col-md-6" style="color: #767676;; font-size: 14px">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    Cleanliness &nbsp;<span class="stars"><%= totalRatings.cleanliness_avg %>
+    </span>
+                    <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    Communication &nbsp;<span class="stars"><%= totalRatings.communication_avg %>
+    </span>
+                    <br />
+                </div>
+
+                <!-- Other two properties -->
+                <div class="col-md-6" style="color: #767676;; font-size: 14px">
+                    House Rules &nbsp;<span class="stars"><%= totalRatings.house_rules_avg %>
+    </span>
+                    <br />
+
+                    Recommend &nbsp;<span class="stars"><%= totalRatings.recommend %>
+    </span>
+                    <br />
+                </div>
+                <script>
+                    $(function() {
+                        $('span.stars').stars();
+                    });
+                </script>
+            </div>
+            <br />
+            <div style="color: #767676;; font-size: 14px">
+                <!-- Div row for iteratively displaying comments -->
+                <% for(i in ratings){ %>
+                <div class="row">
+
+                    <!-- Col-md-2 for displpay pic for the reviewer -->
+                    <div class="col-md-2">
+                        <img class="img-circle1" src= "<%= hostprofileimg %>" alt="profile picture">
+                    </div>
+
+                    <!-- Col-md-10 for reviewer name and date -->
+                    <div class="col-md-10">
+                        <%- ratings[i].reviewer_name %> <br />
+                        <%- ratings[i].review_date %>
+                    </div>
+
+                    <br /><br /><br /><br /><br />
+                    <!-- New row for review comments -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <%- ratings[i].property_review %>
+                        </div>
+                    </div>
+
+                    <br />
+                    <!-- Helpful and report Abuse button -->
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                        <!-- Report -->
+                        <div class="col-md-2">
+                            <span class="glyphicon glyphicon-flag" aria-hidden="true">&nbsp;<a href="/#report">Report</a></span>
+                        </div>
+                        <!-- Helpful -->
+                        <div class="col-md-2">
+                            <button style="background-color: transparent; color: black;";>
+                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">&nbsp;<a href="/#helpful">Helpful</a></span>
+                            </button>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <hr />
+                </div>
+                <% } %>
+            </div>
+
+            <div class="row">
+                <div class="col-md-10">
+                    <font style="font-size: 30px; color: #767676;";>Hosted by <%= host.fname %></font>
+                    <br />
+                    <font style="color: #767676;"><%= host.city %>, <%= host.state %> . Member since 2013</font>
+                </div>
+
+                <!-- Host profile image -->
+                <div class="col-md-2">
+                    <img class="img-circle1" src= "<%= hostprofileimg %>">
+                </div>
+
+                <div class="row">
+                    <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/#contactHost">
+                        <button>
+                            <font color="#00008b">Contact Host</font>
+                        </button>
+                    </a><br />
+                    <font style="color: #767676;">
+                        <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        Response rate : <b>100%</b>
+                        <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        Response Time : <b>within an hour</b>
+                    </font>
+                </div>
+                <hr />
+
+                <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
+                <div style='overflow:hidden;height:540px;width:1000px;'>
+                    <div id='gmap_canvas' style='height:540px;width:1000px;'></div>
+                    <div><small><a href="http://embedgooglemaps.com"></a></small></div>
+                    <div><small><a href="https://freedirectorysubmissionsites.com/"></a></small>
+                    </div><style>#gmap_canvas img{max-width:none!important;background:none!important}</style>
+                </div>
+
+                <script src='https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyB-7U6qTUfJE-_NBItfrn81VTRM3ZPrLKA'>
+
+                </script>
+                <div style='overflow:hidden;height:200px;width:200px;'>
+                    <div id='gmap_canvas' style='height:200px;width:200px;'>
+
+                    </div><style>
+                        #gmap_canvas img{max-width:none!important;background:none!important}
+                    </style></div> <a href='https://addmap.net/'>https://addmap.net</a>
+                <script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=1f4edbca13e40906b40b73f6869d3a7e1e6e9b47'>
+
+                </script>
+                <script type='text/javascript'>
+                    function init_map()
+                    {
+                        var myOptions =
+                        {
+                            zoom:18,
+                            center:new google.maps.LatLng('<%= property.xcoord %>','<%= property.ycoord %>'),
+                            mapTypeId: google.maps.MapTypeId.ROADMAP
+                        };
+                        map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
+
+                        marker = new google.maps.Marker({
+                            map: map,
+                            position: new google.maps.LatLng('<%= property.xcoord %>','<%= property.ycoord %>')
+                        });
+                        // infowindow = new google.maps.InfoWindow({
+                        //     content:'<strong></strong><br>201 S 4th Street<br>95112 San Jose<br>'
+                        // });
+                        google.maps.event.addListener(marker, 'click',
+                                function(){
+                                    infowindow.open(map,marker);
+                                });
+                        infowindow.open(map,marker);
+                    }
+                    google.maps.event.addDomListener(window, 'load', init_map);
+                </script>
+
+
+            </div>
+
+        </div>
+
+        <!-- Column md-4 for booking and auction -->
+        <div class="col-md-4">
+            <!-- Well for booking -->
+            <div class="well" id="booking_well">
+                <div class="row">
+                    <div class="col-md-3">
+                        <b> $<%= dynprice %></b>
+                    </div>
+                    <div class="col-md-5"></div>
+                    <div class="col-md-4">
+                        Per Night
+                    </div>
+                    <br /><hr />
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        Check In <br />
+                        <%= checkin %>
+
+                    </div>
+                    <div class="col-md-4">
+                        Check Out <br />
+                        <%= checkout %>
+                    </div>
+                    <div class="col-md-4">
+                        Guests <br />
+                        <%= guests %>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-9">
+                        <%= dynprice %> * <%= duration %> nights   <!-- ** -->
+                    </div>
+                    <div class="col-md-3">
+                        $<%= total %>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-9">
+                        Cleaning fee <i class="fa fa-question-circle"></i>
+                    </div>
+                    <div class="col-md-3">
+                        $38
+                    </div>
+                </div>
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-9">
+                        Service fee <i class="fa fa-question-circle"></i>
+                    </div>
+                    <div class="col-md-3">
+                        $16
+                    </div>
+                </div>
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-9">
+                        Occupancy taxes <i class="fa fa-question-circle"></i>
+                    </div>
+                    <div class="col-md-3">
+                        $2
+                    </div>
+                </div>
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-9">
+                        Total
+                    </div>
+                    <div class="col-md-3">
+                        $<%= final %>
+                    </div>
+                </div>
+                <hr />
+                <div ng-show="aaa" input type="text"  style="width:200px;height:30px;" name="user_log" id="user_log" ng-model="user_log" placeholder="" ng-init="user_log='<%- user_log %>'"> </div>
+                <div ng-show="kkk" input type="text"  style="width:200px;height:30px;" name="Qty" id="Qty" ng-model="Qty" placeholder="" ng-init="Qty='<%- Qty %>'"> </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <center>
+                            <a ng-click="Book('<%= property.property_id%>','<%= checkin %>','<%= checkout %>','<%= guests %>');">
+                                <button class="btn btn-large btn-block" style="background-color: red"  ng-show="Qty>0 && user_log != ''">
+                                    <font style="color: white">Book</font>
+                                </button>
+                            </a>
+                            <span  ng-show="Qty==0"><font style="color: red"> The property is unavailable for your booking dates</font></span>
+
+                            <a href="/">
+                                <button class="btn btn-large " style="background-color: red"  ng-show="user_log == ''">
+                                    <font style="color: white">Signin</font>
+                                </button>
+                            </a><br>
+                            <span  ng-show="user_log == ''"><font style="color: red">Sign-In to Proceed with booking</font></span>
+                        </center>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <center style="color: #767676; text-align: center">You won't be charged yet</center>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-12"></div>
+                    <center>
+                        <b>
+
+                            This is a rare find.
+                            <br /><br />
+
+                        </b>
+                        <%= host.fname %>'s place is usually booked.&nbsp;&nbsp;
+                        <i class="ionicons ion-android-bulb" style="font-size: 30px"></i>
+                    </center>
+                </div>
+            </div>
+
+            <br /><br />
+
+            <!-- Second well for wishlist -->
+            <div class="well" id="booking_well">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="btn btn-large btn-block" style="background-color: transparent; border: 1px solid lightgray">
+                            <b><i class="ionicons ion-ios-heart-outline"></i>&nbsp;Save to Wish List</b>
+                        </button>
+                        <br />
+                        <center style="color: #767676;">889 people saved this place</center>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-4" style="border: 1px solid lightgray ;">
+                                Email
+                            </div>
+                            <div class="col-md-4" style="border: 1px solid lightgray ;">
+                                Messenger
+                            </div>
+                            <div class="col-md-4" style="border: 1px solid lightgray ;">
+                                ...More
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row">
+                <div class="col-md-12">
+                    <center><span class="ion-ios-flag-outline" style="font-size: 14px"></span>&nbsp;&nbsp;Report this listing</center>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Remaining right padding for column md-2 -->
+    <div class="col-md-1">
+    </div>
+
+
+</div>
+
+<!-- End of main container -->
+</div>
+
+</body>
+</html>

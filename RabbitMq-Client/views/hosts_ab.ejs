@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<head>
+    <style>
+        div.logo {
+            position: fixed;
+            top: 5px;
+            left: 20px;
+        }
+        div.fixedImage {
+
+            top: 130px;
+            left: 160px;
+        }
+
+        #searchID {
+            border-color: #ff5a5f;
+            background-color: #ff5a5f;
+            color: #fff;
+        }
+
+    </style>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <script src="angularjs/admin.js"></script>
+
+</head>
+<body ng-app="admin" ng-controller="admin">
+
+<header>
+    <% include ./user_adminheader_ab.ejs %>
+</header>
+
+<br>
+
+<div class="row">
+    <% for(i in cities) { %>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="checkbox" ng-model="check_<%- i %>" id="cb" ng-click="btn_filter_ab('<%- cities[i] %>')" ng-true-value="'<%- cities[i] %>'" ng-false-value="'nothing'"/> <%- cities[i] %>
+    <% } %>   <!-- end of if -->
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="button" id="searchID" style="height: 35px;" class="btn btn-primary" ng-click="btn_appplyFilter_ab()">Filter</button>
+
+</div>
+<br>
+<br>
+
+<div class="row">
+    <% for(j in checkcities) { %>
+    <div class="col-md-3">
+        <b><%- checkcities[j] %></b>
+    </div>
+
+
+    <div class="col-md-9">
+        <% for(i in hosts) { %>
+        <% if(hosts[i].city == checkcities[j]) { %>
+
+        <div class="col-md-4 well" style="margin: 10px;">
+
+            <div class="row">
+                <div class="col-md-3">
+                    Firstname:
+                </div>
+                <div class="col-md-6">
+                    <%- hosts[i].fname %> <br>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    Lastname:
+                </div>
+                <div class="col-md-6">
+                    <%- hosts[i].lname %><br>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    City:
+                </div>
+                <div class="col-md-6">
+                    <%- hosts[i].city %><br>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    Email:
+                </div>
+                <div class="col-md-6">
+                    <%- hosts[i].email %><br>
+                </div>
+            </div>
+
+            <div class="pull-right">
+                <a ng-click="viewHost('<%- hosts[i].hostid %>');">View Details</a>
+            </div>
+        </div>
+        <% } %>   <!-- end of if -->
+        <% } %>  <!-- end of inner for -->
+    </div>
+
+    <% } %>
+
+
+</div>
+</body>
+</html>

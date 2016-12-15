@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Become a Host and Rent Out Your Room, House or Apartment on Airbnb</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<style>
+.button3{
+background:#ff5a5f;
+height:46px;
+width:550px;
+ border: none;
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 15px;
+ margin: 4px 2px;
+ cursor: pointer;
+}
+
+#login{
+outline:  1px solid #ff5a5f;
+float:right;
+}
+input[type="email"] {
+    height:46px;
+width:550px;
+outline:  1px solid #aaaaaa;
+}
+input[type="password"] {
+    height:46px;
+width:550px;
+outline:  1px solid #aaaaaa;
+}
+input[type="submit"] {
+  background:#00a699;
+  padding: 10px;
+
+  display: block;
+  width: 100px;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+}
+input[type="text"] {
+ width:370px;
+ height:40px;
+}
+.main{
+ 
+}
+.heading{
+  font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 25px;
+    line-height: 1.43;
+    color: #484848;
+    margin: 0 auto;
+}
+.photo{
+  padding-left: 2cm;
+    }
+
+
+</style>
+
+</head>
+<body>
+<div class="container-fluid">
+  <a href="#">
+<img src="airbnb.png" width="30" height="30">
+</a>
+<hr /> <br /> <br />
+<div class="col-md-8 col-md-offset-1">
+<div class="main">
+  <div class="heading">
+    Hi, <%= fname %>! Let’s get you ready to<br /> become a host. <br /> <br />
+  </div>
+ 
+    <span style="color:#bebebe;">STEP 1</span> <br />
+    <span style="
+    font-size: 22px;
+    line-height: 1.43;
+    color: #484848;">What kind of place do you have?</span> <br />
+    <form method="POST" action="/hoststart1">
+   <div class="row">
+  <div class="col-xs-2">
+    <div class="form-group">
+      <select class="selectpicker form-control" name="place">
+  <option title="Entire place">Entire place</option>
+  <option title="Private Room">Private Room</option>
+  <option title="Shared Room">Shared Room</option>
+ </select>
+    </div>
+  </div> 
+  <div class="col-xs-2">
+    <div class="form-group">
+      <select class="selectpicker form-control" name="guestnum">
+  <option title="for 1 guest">for 1 guest</option>
+  <option title="for 2 guest">for 2 guest</option>
+  <option title="for 3 guest">for 3 guest</option>
+  <option title="for 4 guest">for 4 guest</option>
+  <option title="for 5 guest">for 5 guest</option>
+  <option title="for 6 guest">for 6 guest</option>
+  <option title="for 7 guest">for 7 guest</option>
+  <option title="for 8 guest">for 8 guest</option>
+  <option title="for 8 guest">for 9 guest</option>
+  <option title="for 10 guest">for 10 guest</option>
+  <option title="for 11 guest">for 11 guest</option>
+  <option title="for 12 guest">for 12 guest</option>
+  <option title="for 13 guest">for 13 guest</option>
+  <option title="for 14 guest">for 14 guest</option>
+  <option title="for 15 guest">for 15 guest</option>
+   <option title="for 16 guest">for 16 guest</option>
+ </select> 
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-8">
+    <div class="form-group">
+<input type="text" placeholder="e.g. San Francisco" name="address" required> <br />
+</div> </div> </div>
+<input type="submit" value="Continue">
+</form></div>
+</div>
+<div class="photo">
+<img src="cover.png" style="float:right; width:300px; height:500px;">
+</div>
+  
+
+</div>
+
+
+</body>
+</html>
+

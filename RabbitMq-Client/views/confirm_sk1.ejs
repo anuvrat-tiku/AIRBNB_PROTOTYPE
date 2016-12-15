@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html ng-app="confirmBooking">
+<head>
+
+    <style>
+        #top_navbar_row{
+            border-right: 1px solid #dce0e0;
+            top: 20px;
+        }
+
+        .glyphicon.glyphicon-search{
+            font-size: 30px;
+            top: 10px;
+        }
+
+        #search_bar{
+            border: none;
+            outline: none;
+        }
+
+        .top_nav_links {
+            color: black;
+            display: inline-block;
+            color: grey;
+            font-family: Helvetica;
+        }
+
+        .dropbtn{
+            color: black;
+            border: none;
+            padding: none;
+            background: transparent;
+            color: grey;
+            font-family: Helvetica;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: none;
+        }
+
+        .dropbtn:hover {
+            display: block;
+            background: transparent;
+        }
+
+        .view_photos_button {
+            position: absolute;
+            top: 550px;
+            left: 40px;
+        }
+
+        .description {
+            font-family: "Century Schoolbook L";
+            color: black;
+            font-size: 34px;
+        }
+
+        .img-circle {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+        }
+
+        span.stars, span.stars span {
+            display: block;
+            background: url("images/Star.png") 0 -16px repeat-x;
+            width: 80px;
+            height: 16px;
+        }
+
+        span.stars span {
+            background-position: 0 0;
+        }
+
+        #transparent_well {
+            background : transparent;
+        }
+
+        .link_image {
+            position: absolute;
+            top : 180px;
+            left: 130px;
+        }
+
+        #house_rules_pic {
+            position: absolute;
+            top : 576px;
+            left: 265px;
+        }
+
+        #lock_icon {
+            position: relative;
+            top:1px;
+            left: 1px;
+        }
+
+        #profile_image_overlap {
+            position: absolute;
+            top: 160px;
+            right: 40px;
+
+        }
+
+    </style>
+    <title><%= title %></title>
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.js"
+            integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+            crossorigin="anonymous">
+
+    </script>
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <!-- Angular JS -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- CDN for extra glyphicons -->
+    <script src="https://use.fontawesome.com/5cdf732636.js"></script>
+
+    <!-- Ionic icons -->
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+    <!-- Script to generate rating stars -->
+    <script>
+        $.fn.stars = function() {
+            return $(this).each(function() {
+                // Get the value
+                var val = parseFloat($(this).html());
+                val = Math.round(val * 4) / 4; /* To round to nearest quarter */
+                // Make sure that the value is in 0 - 5 range, multiply to get width
+                var size = Math.max(0, (Math.min(5, val))) * 16;
+                // Create stars holder
+                var $span = $('<span />').width(size);
+                // Replace the numerical value with stars
+                $(this).html($span);
+            });
+        }
+    </script>
+
+    <!-- Script for enabling submit button on checking I agree -->
+    <script>
+        function disableSubmit() {
+            document.getElementById("I_Agree").disabled = true;
+        }
+
+        function enableSubmit(element) {
+            if(element.checked) {
+                document.getElementById("I_Agree").disabled = false;
+            }
+            else  {
+                document.getElementById("I_Agree").disabled = true;
+            }
+        }
+    </script>
+
+    <script src="angularjs/scripts.js"></script>
+
+
+</head>
+
+
+<body ng-controller="divController" onload = "disableSubmit()">
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- Div element for the top row which has the Airbnb logo and search bar -->
+            <div id="top_navbar"  class="navbar navbar-top">
+                <a id="top_navbar_row">
+                    <img src="images/airbnb.jpg" alt="ABNB" height="60" width="80">
+                </a>
+                <!-- Glyphicon for search icon -->
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="glyphicon glyphicon-search" aria-hidden="true">
+      </span>
+                &nbsp;&nbsp;
+                <!-- Transparent Search bar consistent with Airbnb -->
+                <input type="text" name="search_bar" id="search_bar" placeholder="Search"/>
+
+                <span>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span>
+
+
+                <!-- Top row links -->
+
+                <div class="top_nav_links">
+                    <button class="dropbtn">Become a Host
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="/#host">You could earn $599 haring your home<br /> in <%= title %> in a week. Become<br />a host.</a>
+                    </div>
+                </div>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <div class="top_nav_links">
+                    <button class="dropbtn" href="#news">Trips
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#/viewTrips">Trips          View Trips</a>
+                        <a href="#/viewWL">Wish Lists     View Wish Lists</a>
+                    </div>
+                </div>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <div class="top_nav_links">
+                    <button class="dropbtn" href="#">Messages
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#/viewInbox">View Inbox</a>
+                        <a href="#/viewDashboard">View Dashboard</a>
+                    </div>
+                </div>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <a class="top_nav_links" href="#/help">Help</a>
+
+
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="top_nav_links">
+                    <button class="dropbtn" href="#">
+                        <span class="glyphicon glyphicon-user" style="background: none; padding: none"></span>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#/editProfile">Edit Profile</a>
+                        <a href="#/referrals">Referrals</a>
+                        <a href="#/accountSettings">Account Settings</a>
+                        <a href="#/logout">Logout</a>
+                    </div>
+                </div>
+                <hr />
+
+            </div>
+        </div>
+    </div>
+    <!-- End of the row div class-->
+
+    <!-- Beginning of new row div class for main page content -->
+    <div class="row">
+
+        <!-- Padding col-md-1 -->
+        <div class="col-md-1"></div>
+
+        <!-- col-md-6 for trip confirmation and pyment-->
+        <div class="col-md-5">
+
+            <!-- Trip details sections displayed by default; hidden on clicking next button-->
+            <div class="row" ng-show="trip">
+
+                <!-- Well for static data -->
+                <div class="well" id="transparent_well" style="color: #484848">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <br />
+                            <b>This is a rare find</b>
+                            <br /><br />
+                            <%= host.fname %>'s place is usually booked. <br />
+                        </div>
+                        <div class="col-md-2">
+                            <span class="ion-android-bulb" style="font-size: 60px; color: gray"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>1. About your trip</h2>
+                    <br />
+                    <h4>Who's coming?</h4>
+                    <br />
+                <!--    <select name="guests" class="btn btn-secondary" style="width: 300px; height: 50px; background-color: transparent; border: 1px solid #484848">
+                        <option>1 guest</option>
+                        <option>2 guests</option>
+                        <option selected><%= guests %> guests</option> 
+                        <option>4 guests</option>
+                    </select> !-->
+                    <input type="text" name="guest" ng-model="guest" ng-init="guest='<%- guests %>'"readonly>
+
+                    <br /><br />
+                    <h4>Say hello to your host and tell them why you’re coming:</h4>
+                    <br />
+
+                    <form name="messageR" id="messageR">
+                        <textarea form="messageR" id="req" name="req" cols="69" rows="7" placeholder="Visiting family or friends? Seeing the sights? This helps your host plan for your trip."></textarea>
+                        <!-- Error message if message is empty -->
+                        <div ng-show="messageR.req.$touched && messageR.req.$pristine">
+                            <b style="color: blanchedalmond">Message Required</b>
+                        </div>
+                    </form>
+
+                    <br /><br />
+
+                    <div class="well" id="grey_well" style="background: floralwhite">
+                        <center>
+                            <font style="font-size : x-large"><%= host.fname %>'s House Rules<br /><br />
+                            </font>
+                        </center>
+                        <div class="row">
+                            <div class="col-md-10" style="font-size: 19px">
+                                <br />
+                                Check-in is after 3PM
+                            </div>
+                            <div class="col-md-2"><br />
+                                <span class="ion-ios-checkmark-empty" style="color: green; font-size: 30px"></span>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+
+                    <!-- House rules pic will be put in place using CSS -->
+                    
+                    <button class="btn btn-lg" style="background-color: red" ng-click="showPaymentDiv()">
+                        <font style="color: white">Next</font>
+                    </button>
+
+                </div>
+            </div>
+
+            <hr />
+
+            <div ng-show="payment" class="row">
+
+                <h2>
+                    <div class="col-md-10">
+                        1. About your trip
+                    </div>
+
+                </h2>
+                <h4>
+                    <div class="col-md-2">
+                        <span><a href="" ng-click="editTrip()">Edit</a></span>
+                    </div>
+                </h4>
+
+            </div>
+
+
+            <div class="row">
+                <h2>
+                    <div class="col-md-10">
+                        2. Payment
+                    </div>
+                </h2>
+            </div>
+
+            <!-- Payment option row, Hidden by default displayed on clicking the next button -->
+            <div class="row" ng-show="payment">
+                <div class="col-md-12">
+
+                    <form name="billing_info" ng-submit="paymentDetailsForm()">
+                        <h4>
+                            Billing country
+                        </h4>
+
+                        <br />
+
+                        <select ng-model="country" name="country" class="btn btn-secondary" style="width: 300px; height: 50px; background-color: transparent; border: 1px solid #484848; font-size: medium" required />
+                        <option>India</option>
+                        <option>France</option>
+                        <option>United States</option>
+                        <option>Israel</option>
+                        </select>
+
+                        <!-- Error message for billing country if left blank on visiting -->
+
+                        <div ng-show="billing_info.country.$touched && billing_info.country.$pristine">
+                            <b style="color: burlywood;">Check your billing country</b>
+                        </div>
+
+                        <br /><br />
+
+                        <h4>Payment Type</h4> <br />
+                        <select ng-model="card_type" name="payment_type" class="btn btn-secondary" style="width: 300px; height: 50px; background-color: transparent; border: 1px solid #484848; font-size: medium" required />
+                        <option>Credit Card</option>
+                        <option>Amex Express Checkout (USD)</option>
+                        </select>
+
+                        <!-- Error message for payment type if left blank on visiting -->
+
+                        <div ng-show="billing_info.payment_type.$touched && billing_info.payment_type.$pristine">
+                            <b style="color: burlywood;">Check your billing country</b>
+                        </div>
+
+                        <br /><br />
+
+                        <h4>Card Number *</h4>
+                        <input type="text" ng-model="card_number" name="card_number" maxlength="16" minlength="15" size="59" style="height: 51px" required pattern="[3456][0-9]{15}" />
+
+                        <span class="ion-ios-locked-outline" style="font-size: 28px" id="lock_icon"></span>
+
+                        <!-- AMEX, Visa, Mastercard and Discover card details -->
+
+                        <i class="fa fa-cc-amex" style="font-size: 39px"></i>
+
+                        <i class="fa fa-cc-mastercard" style="font-size: 39px"></i>
+
+                        <i class="fa fa-cc-visa" style="font-size: 39px"></i>
+
+                        <i class="fa fa-cc-discover" style="font-size: 39px"></i>
+
+                        <br /><br />
+
+                        <!-- Error message for card number if left blank on visiting -->
+
+                        <div ng-show="billing_info.card_number.$touched && billing_info.card_number.$pristine">
+                            <b style="color: burlywood;">Check your card number</b>
+                        </div>
+
+                        <h4>Expires on * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;
+                            Security Code *  </h4><br />
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <select ng-model="MM" name="MM" class="btn btn-secondary" style="width: 150px; height: 50px; background-color: transparent; border: 1px solid #484848; font-size: medium" required />
+                                <option>01</option>
+                                <option>02</option>
+                                <option>03</option>
+                                <option>04</option>
+                                <option>05</option>
+                                <option>06</option>
+                                <option>07</option>
+                                <option>08</option>
+                                <option>09</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <select ng-model="YYYY" name="YYYY" class="btn btn-secondary" style="width: 150px; height: 50px; background-color: transparent; border: 1px solid #484848; font-size: medium" required />
+                                <option>2017</option>
+                                <option>2018</option>
+                                <option>2019</option>
+                                <option>2020</option>
+                                <option>2021</option>
+                                <option>2022</option>
+                                <option>2023</option>
+                                <option>2024</option>
+                                <option>2025</option>
+                                <option>2026</option>
+                                <option>2027</option>
+                                <option>2028</option>
+                                <option>2029</option>
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-4">
+                                <input type="number" ng-model="cvv" name="cvv" maxlength="4" minlength="3" style="height: 51px" required />
+
+                            </div>
+
+                            <!-- Error message for month if left blank on visiting -->
+
+                            <div ng-show="billing_info.MM.$touched && billing_info.MM.$pristine">
+                                <b style="color: burlywood;">Check your CVV expiry month</b>
+                            </div>
+
+                            <!-- Error message for year if left blank on visiting -->
+
+                            <div ng-show="billing_info.YYYY.$touched && billing_info.YYYY.$pristine">
+                                <b style="color: burlywood;">Check your CVV expiry year</b>
+                            </div>
+
+                            <!-- Error message for cvv if left blank on visiting -->
+
+                            <div ng-show="billing_info.cvv.$touched && billing_info.cvv.$pristine">
+                                <b style="color: burlywood;">Check your CVV number</b>
+                            </div>
+
+                        </div>
+
+                        <br /><br />
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h4>First name</h4>
+                                <input type="text" ng-model="fname" name="fname" required  style="height: 51px;width:150px;"  />
+                            </div>
+
+                            <div class="col-md-2"></div>
+
+                            <div class="col-md-4">
+                                <h4>Last name</h4>
+                                <input type="text" ng-model="lname" name="lname" required  style="height: 51px; width:150px";  />
+                            </div>
+                        </div>
+
+                        <!-- Error fields for first name -->
+
+                        <div ng-show="billing_info.fname.$touched && billing_info.fname.$pristine">
+                            <b style="color: burlywood;">First name is required</b>
+                        </div>
+
+                        <!-- Error fields for last name -->
+
+                        <div ng-show="billing_info.lname.$touched && billing_info.lname.$pristine">
+                            <b style="color: burlywood;">Last name is required</b>
+                        </div>
+
+                        <br /><br />
+
+                        <h4>Postal code *</h4>
+                        <input type="text" ng-model="pin" name="pin" maxlength="10" minlength="5" required size="20" style="height: 51px"/>
+
+                        <!-- Error fields for postal code -->
+
+                        <div ng-show="billing_info.pin.$touched && billing_info.pin.$pristine">
+                            <b style="color: burlywood;">Billing postal code is required</b>
+                        </div>
+
+                        <br /><br />
+                        <h4>* Required fields</h4>
+
+                        <br /><br />
+
+                        <input type="checkbox" name="condition_agree" onchange="enableSubmit(this)" />
+
+                        <span style="font-size: large">
+              I agree to the House Rules, Cancellation Policy, and to the Guest Refund Policy.
+              I also agree to pay the total amount shown, which includes Occupancy Taxes and Service Fees.
+              Airbnb now collects and remits government-imposed Occupancy Taxes in this location.
+            </span>
+
+                        <br /><br />
+
+                        <!-- submit button -->
+                        <a ng-click="toHost('<%- checkin %>', '<%- checkout %>', '<%- guests %>', '<%- property.property_id %>')">
+                            <button id="I_Agree" class="btn btn-lg" style="background-color: red" >
+                                <font style="color: white">Continue</font>
+                            </button>
+                        </a>
+
+                        <br />
+                        Next you’ll verify your ID for your host
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+
+        <br />
+
+        <div class="col-md-1"></div>
+
+        <!-- col-md-4 for room charge breakdown -->
+        <div class="col-md-4" style="color: #484848;">
+            <!-- Well for booking -->
+            <div class="well" id="transparent_well">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img src="227-06-6115coverimg.jpg" width="330" height="200"> <!-- ** cover image -->
+                        <img class="img-circle" src="370-05-8868hostimguser.jpg" id="profile_image_overlap">
+                    </div>
+                </div>
+                <br />
+                <div class="row" style="font-size: 19px; color: #484848">
+                    &nbsp;&nbsp;Hosted by <%= host.fname %>
+                    <br /><br />
+                    <h3 style="color: black">
+
+                        <%= property.description %>, <%= property.place %>
+                    </h3>
+                    <span class="stars"><%= totalRatings.average %></span>
+                    <script>
+                        $(function() {
+                            $('span.stars').stars();
+                        });
+                    </script>
+
+                    <%= totalRatings.total %> reviews <br />
+                    <%= property.city %>, <%= property.state %>,
+
+                    <hr />
+
+                </div>
+
+<!-- hidden field -->
+                <div ng-show = "fff"><input type="text"  ng-model="hostid" ng-init="hostid='<%- property.host_id %>'"placeholder="" name="hostid"></div>
+            <div ng-show = "aaa"><input type="text"  ng-model="proplace1" ng-init="proplace1='<%- property.placename %>'"placeholder="" name="proplace1"></div>
+                <div ng-show = "bbb"><input type="text"  ng-model="prop_price" ng-init="prop_price='<%= property.price %>'"placeholder="" name="prop_price"></div>
+                <div ng-show = "ccc"><input type="text"  ng-model="prop_place" ng-init="prop_place='<%= property.guest_place %>'"placeholder="" name="prop_place"></div>
+                <div ng-show = "ddd"><input type="text"  ng-model="prop_city" ng-init="prop_city='<%= property.city %>'"placeholder="" name="prop_city"></div>
+                <div ng-show = "eee"><input type="text"  ng-model="prop_apt" ng-init="prop_apt='<%= property.apt %>'"placeholder="" name="prop_apt"></div>
+                <div ng-show = "fff"><input type="text"  ng-model="prop_zip" ng-init="prop_zip='<%= property.zip %>'"placeholder="" name="prop_zip"></div>
+                <div ng-show = "ggg"><input type="text"  ng-model="prop_country" ng-init="prop_country='<%= property.country %>'"placeholder="" name="prop_country"></div>
+                <div ng-show = "hhh"><input type="text"  ng-model="prop_street" ng-init="prop_street='<%= property.street %>'"placeholder="" name="prop_street"></div>
+                <div ng-show = "iii"><input type="text"  ng-model="prop_state" ng-init="prop_state='<%= property.state %>'"placeholder="" name="prop_state"></div>
+                <div ng-show = "kkk"><input type="text"  ng-model="prop_type" ng-init="prop_type='<%= property.type %>'"placeholder="" name="prop_type"></div>
+                <div ng-show = "lll"><input type="text"  ng-model="prop_qty" ng-init="prop_qty='<%= property.Qty %>'"placeholder="" name="prop_qty"></div>
+                <!-- hidden field -->
+
+                <div class="row" style="font-size: 20px">
+                    <b>
+                        <div class="col-md-4">
+                            Check-in <br />
+                            <%= checkin %>
+                        </div>
+                        <div class="col-md-2"><center><span class="ion-ios-arrow-right" style="font-size: 19px"></span></center></div>
+                        <div class="col-md-4">
+                            Checkout <br />
+                            <%= checkout %>
+                        </div>
+                    </b>
+                </div>
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-9">
+                        $<%= property.price %> &nbsp; X &nbsp; <%= duration %> <i class="fa fa-question-circle"></i>
+                    </div>
+                    <div class="col-md-3">
+                        <%= total %>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-9">
+                        Cleaning fee <i class="fa fa-question-circle"></i>
+                    </div>
+                    <div class="col-md-3">
+                        $38
+                    </div>
+                </div>
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-9">
+                        Service fee <i class="fa fa-question-circle"></i>
+                    </div>
+                    <div class="col-md-3">
+                        $16
+                    </div>
+                </div>
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-9">
+                        Occupancy taxes <i class="fa fa-question-circle"></i>
+                    </div>
+                    <div class="col-md-3">
+                        $2
+                    </div>
+                </div>
+                <hr />
+
+
+                <div class="row">
+                    <div class="col-md-7">
+                        <h2><b>Total</b></h2>
+                    </div>
+                    <div class="col-md-5">
+                        <h2><b>
+                                VAL
+                                <sup>USD  <%= final %></sup>
+                            </b></h2>
+                    </div>
+
+                    <br />
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    Cancellation policy : <a href="#">Moderate</a>
+
+                </div>
+            </div>
+
+            <br /><br />
+
+            <!-- Second well for wishlist -->
+            <div class="well" id="transparent_well">
+                <div class="row">
+                    <div class="col-md-10" style="color: #484848;">
+                        <h4><b>Airbnb will never ask you to wire money</b></h4>
+                    </div>
+                    <div class="col-md-2">
+                        <img src="airbnb.png" width="30" height="30">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="color: #484848;">
+                        Paying through the Airbnb website or app helps keep your payments secure, and helps you stay covered by applicable policies.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+        <!-- Padding col-md-2 -->
+        <div class="col-md-1"></div>
+
+    </div>
+
+
+
+</div>
+<!-- End of main container-fluid -->
+
+</body>
+</html>

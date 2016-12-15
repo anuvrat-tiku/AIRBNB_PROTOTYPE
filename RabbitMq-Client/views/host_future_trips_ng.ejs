@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Your Listings - Airbnb</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+  <script type="text/javascript" src="./js/angular_controller.js" ></script>
+
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            background-color:white;
+        }
+
+
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .main{
+
+        }
+        .heading{
+            font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 25px;
+            line-height: 1.43;
+            color:#8f8f8f;
+            margin: 0 auto;
+            -webkit-font-smoothing: antialiased;
+        }
+        .photo{
+            margin-left: 170px;
+        }
+        .left{
+            padding-left:2cm;
+            max-width:30%;
+            float:left;
+
+        }
+        .right{
+            padding-left:7cm;
+        }
+        button {
+            background:none!important;
+            border:none;
+            padding:0!important;
+            font: inherit;
+            cursor: pointer;
+        }
+        input[type="submit"] {
+            background:#ff5a5f;
+            color:white;
+            width:150px;
+            height:40px;
+        }
+        input[type="text"] {
+            width:400px;
+            height:30px;
+        }
+        input[type="email"] {
+            width:400px;
+            height:30px;
+        }
+        .panel-default {
+
+            width:850px;
+            height:340px;
+
+        }
+        .header {
+            right:10px;
+            position:absolute;
+            z-index: 90;
+        }
+        nav{
+            z-index:1;
+        }
+    </style>
+
+</head>
+</head>
+<body ng-app="airbnbapp_ng">
+<div class="container-fluid">
+    <div id="header_menu"></div>
+    <script type="text/javascript" src="./js/header.js"></script>
+    <div id="navMenu"></div>
+    <script type="text/javascript" src="./js/nav_bar.js"></script>
+
+
+    <div class="right">
+        <a href="/host_trips" style="color:#484848;">Previous Trips</a> &nbsp &nbsp &nbsp
+
+        <!--     <div class="panel panel-default">
+                <div class="panel-heading">Previous Trips</div>
+                <div class="panel-body"> -->
+        <!-- -->
+
+
+        <div class="panel panel-default" ng-controller="hostupcomtripctrl_ng">
+            <div class="panel-heading">Upcoming Trips</div>
+            <div class="panel-body"><span style="text-align:center;" ng-if="messages=='no'">No upcoming trips.</span>
+                <span style="text-align:center;" ng-if="messages!='no'">
+      <span ng-repeat="message in messages">
+        "{{message.UserFName}}" has booked your property named "{{message.Property_Name}}" from {{message.Checkin}} to {{message.Checkout}}
+            <!-- <div ng-show="message.funn">
+
+         <a ng-click="deny_sk(message.PropertyId,message.bill_id,message.Trip_id)" class="btn btn-danger" style="float:right;"> Delete</a>
+         <a class="btn btn-success" style="float:right;" ng-click="funb(message.Trip_id)"> Edit</a>
+        </div> -->
+          <!-- <div ng-show="message.runn">
+          Checkin <input type="text" name="checkin" id="checkin"  placeholder="YYYY-MM-DD" ng-model="message.Checkin" size ="8" style="height:40px;" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+          Checkout <input type="text" name="checkout" id=checkout  placeholder="YYYY-MM-DD" ng-model="message.Checkout" size ="8" style="height:40px;">
+            <a ng-click="tunbb(message.Trip_id  )" class="btn btn-danger" style="float:right;"> Cancel</a>
+         <a class="btn btn-success" style="float:right;" ng-click="edit_sk(message.Trip_id,message.bill_id,message.Checkin,message.Checkout,message.PropertyId)"> Submit</a>
+            </div>
+ -->
+
+
+          <!-- -->
+
+</span>
+            </span>
+
+            </div>
+
+        </div>
+
+
+        <!--    </div> -->
+
+
+
+
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <style>
+
+        #upload-input {
+            display: none;
+        }
+
+        #searchID {
+            border-color: #ff5a5f;
+            background-color: #ff5a5f;
+            color: #fff;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            background-color:white;
+        }
+
+
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .header {
+            right:10px;
+            position:absolute;
+            z-index: 90;
+        }
+        .dropbtn{
+     background:none!important;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     cursor: pointer;
+}
+
+
+
+    </style>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            $("#phoneShow").hide();
+
+            $("#addphone").click(function(){
+                $("#phoneShow").toggle();
+            });
+
+            $('#upload-btn').on('click', function (){
+                $('#upload-input').click();
+            });
+
+
+
+            $('#upload-input').on('change', function(){
+
+                var files = $(this).get(0).files;
+
+                if (files.length > 0){
+                    console.log(files.length)
+                    var formData = new FormData();
+
+                    for (var i = 0; i < files.length; i++) {
+                        var file = files[i];
+
+                        console.log("indi file")
+                        console.log(file)
+
+                        formData.append('uploads[]', file, file.name);
+                    }
+                }
+
+            });
+
+
+        });
+
+    </script>
+
+    <script src="angularjs/index.js"></script>
+
+</head>
+
+<body ng-app="index" ng-controller="editProfilePhoto_ab">
+
+<div id="header_menu"></div>
+    <script type="text/javascript" src="./js/user_header.js"></script><br /><br /><hr />
+
+
+<main>
+
+    <div class="col-md-3"> <!-- 3  -->
+
+        <% include ./user_header_vertical_ab.ejs %>
+
+    </div>  <!-- 3 end -->
+
+    <div class="col-md-1">
+
+    </div>
+
+    <div style="background-color:#f9f9f9; overflow: auto;" class="col-md-7 well">  <!-- 7 -->
+
+        <div class="panel-header">
+            <h4>&emsp;&emsp;Profile Photo</h4>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col-md-3">
+                <% if(user.image!=null){ %>
+                    <img src="/uploads/<%- user.image %>.jpg"  width="250px" height="250px">
+                <!--  <img src="b85c97e2e2099e2c11e597f88cecbee8.png"  width="250px" height="250px">  -->
+                <% } else { %>
+                <img src="/images/noProfilePhoto.png"  width="250px" height="250px">
+
+                <% } %>
+            </div>
+
+            <div class="col-md-2">
+
+            </div>
+
+            <div class="col-md-7">
+                <div class="row">
+                    Clear frontal face photos are an important way for hosts and guests to learn about each other. It’s not much fun to host a landscape! Please upload a photo that clearly shows your face.
+                </div>
+
+                <br><br>
+                <br>
+               <div class="row">
+                    <div class="col-md-6">
+                       <img src="/images/take-photo.png"  width="200px" height="70px">
+                    </div>
+
+                    <div class="col-md-6">
+                        <button id="upload-btn" class="btn btn-lg upload-btn" type="button" width="150px" height="70px">Add a file from your<br> computer</button>
+                    </div>
+                </div>
+
+                <form action="/file_upload" method="POST" enctype="multipart/form-data">
+                    <input id="upload-input" type="file" name="file" size="50" />
+                    <br>
+                    <input type="submit" value="Upload File" />
+                </form>
+
+                <div class="row">
+
+                    <input id="upload-input" type="file" name="uploads[]" multiple="multiple"></br>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>    <!-- 7 ends -->
+
+</main>
+
+</body>
+</html>

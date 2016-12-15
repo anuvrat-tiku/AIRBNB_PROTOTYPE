@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Profile - Airbnb</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script data-require="angular.js@1.2.0" data-semver="1.2.0" src="http://code.angularjs.org/1.2.0/angular.js"></script>
+
+
+  <script type="text/javascript" src="./js/angular_controller.js" ></script>
+<style>
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+background-color:white;
+}
+
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.main{
+ 
+}
+.heading{
+  font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 25px;
+    line-height: 1.43;
+   color:#8f8f8f;
+    margin: 0 auto;
+        -webkit-font-smoothing: antialiased;
+}
+.photo{
+  margin-left: 170px;
+    }
+.left{
+ padding-left:2cm;
+ max-width:30%;
+float:left;
+
+}
+.right{
+padding-left:7cm;
+}
+button {
+     background:none!important;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     cursor: pointer;
+}
+input[type="submit"] {
+background:#ff5a5f;
+color:white;
+width:150px;
+height:40px;
+}
+input[type="text"] {
+width:400px;
+height:30px;
+}
+input[type="email"] {
+width:400px;
+height:30px;
+}
+.panel-default {
+
+  width:850px;
+height:380px;
+  
+}
+.header {
+  right:10px;
+  position:absolute;
+  z-index: 90;
+}
+nav{
+  z-index:1;
+}
+</style>
+
+</head>
+<body ng-app="airbnbapp_ng" ng-controller="mediactrl_ng">
+<div class="container-fluid">
+  <div id="header_menu"></div>
+<script type="text/javascript" src="./js/header.js"></script>
+<div id="navMenu"></div>
+
+<script type="text/javascript" src="./js/nav_bar.js"></script>
+<div class="left">
+<a href="/host_profile" style="color:#484848;">Edit Profile</a><br /><br />
+<b><a href="/host_media" style="color:#484848;">Photos and Videos</a></b><br /> <br />
+<a href="/host_review" style="color:#484848;">Reviews</a><br /> <br />
+</div>
+
+<div class="right">
+<div class="panel panel-default">
+    <div class="panel-heading">Profile Photo</div>
+    <div class="panel-body">
+    <img src="hostprofileimg.jpg" width="200" height="200" style="float:left;">
+<div style="float:right;">
+<span style="color:#777777;">Clear frontal face photos are an important way for hosts and guests to learn<br /> about each other. It’s not much fun to host a landscape! Please upload a photo <br /> that clearly shows your face.</span> <br /> <br />
+Pick an image-file: 
+
+<form action="/uploadhostprofileimg" method="POST" enctype="multipart/form-data">
+                    <input id="upload-input" type="file" name="file" size="50" />
+                    <br>
+                    <input type="submit" value="Upload File" />
+                </form>
+
+</div>
+</div>
+  </div>
+<div class="panel panel-default">
+    <div class="panel-heading">Profile Video</div>
+    <div class="panel-body">
+     <video width="200" controls>
+     
+  <source src="hostvideo.mp4" type="video/mp4">
+</video>
+     <div style="float:right;">
+     <h4>Tell the community a little bit about yourself</h4><br />
+     <span style="color:#777777;">Start with your name and answer some of the following questions, or make up some of your own!</span> <br />
+     <br />
+     <ul>
+     <li>Where are you from?</li>
+<li>What are some of your interests?</li>
+<li>What do you do in your spare time?</li>
+<li>What is a fun fact about yourself?</li>
+<li>What are some of your favorite things?</li>
+</ul> <br />
+<form action="/uploadhostvideo" method="POST" enctype="multipart/form-data">
+                    <input id="upload-input" type="file" name="file" size="50" />
+                    <br>
+                    <input type="submit" value="Upload a Video" />
+                </form>
+   </div>
+    </div>
+  </div>
+
+</div>
+
+ 
+
+
+</div> 
+
+
+</body>
+</html>
+

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<head>
+
+    <style>
+        div.logo {
+            position: absolute;
+            top: 5px;
+            left: 20px;
+        }
+
+        #rateSubmit {
+            border-color: #ff5a5f;
+            background-color: #ff5a5f;
+            color: #fff;
+        }
+
+        #upload-input {
+            display: none;
+        }
+
+
+    </style>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/star-rating.min.css" media="all" rel="stylesheet" type="text/css"/>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/stylesheets/star-rating.min.js" type="text/javascript"></script>
+
+
+
+  <script type="text/javascript" src="./js/angular_controller.js" ></script>
+</head>
+
+<body ng-app="airbnbapp_ng" ng-controller="hostratingsctrl_ng">
+
+<input type="text"  style="width:200px;height:30px;display:none;" name="user_id" id="user_id" ng-model="user_id" placeholder="" ng-init="user_id='<%- user_id %>'"> </div>
+<input type="text"  style="width:200px;height:30px;display:none;" name="trip_id" id="trip_id" ng-model="trip_id" placeholder="" ng-init="trip_id='<%- trip_id %>'"> </div>
+<div class="row">
+    <div class="logo">
+        <a href='/host_home'><img src="https://a1.muscache.com/airbnb/static/icons/android-icon-192x192-c0465f9f0380893768972a31a614b670.png" width="30px" height="30px"></a>
+    </div>
+
+</div>
+
+<br><br><br>
+
+<div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-3">  <!-- left side -->
+
+        <div style="color:  #666666; font-size: 20px">
+            Rate & Review
+            <br>
+
+       
+                <img src="hostprofileimg.jpg"  width="250px" height="250px">
+            <!--  <img src="b85c97e2e2099e2c11e597f88cecbee8.png"  width="250px" height="250px">  -->
+
+        </div>
+
+    </div>    <!-- left side end -->
+
+    <div class="col-md-1">
+    </div>
+
+    <div class="col-md-7">  <!-- right side -->
+        <br>
+        <div class="row">
+            <div style="color:  #808080; font-size: 15px">
+                Describe Your Experience with the Guest (required)
+            </div>
+
+            <div style="color:  #808080; font-size: 13px">
+                Your review will be public.
+            </div>
+
+            <div>
+            <textarea rows="4" cols="50" ng-model="describeProperty"
+                      placeholder="What was it like to have the guest at this property"></textarea>
+            </div>
+
+            <div style="color:  #808080; font-size: 10px">
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                500 words left
+            </div>
+
+        </div>
+
+        <br>
+        <div class="row">
+            <div style="color:  #808080; font-size: 15px">
+                Private Guest Feedback
+            </div>
+
+            <div style="color:  #808080; font-size: 13px">
+                This feedback is just for your Guest. We wont make it public.
+            </div>
+
+            <div>
+            <textarea rows="4" cols="50" ng-model="describeHost"
+                      placeholder="Thank your guest for staying at this property or offer some tips to help them improve for the next trip"></textarea>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+
+            <div ng-show="cleanlinessShow" style="color:red">
+                Required Field
+            </div>
+
+            <div style="color:  #808080; font-size: 15px">
+                Cleanliness
+            </div>
+
+            <div style="color:  #808080; font-size: 13px">
+                Has the guest left the property clean?
+            </div>
+
+            <input id="cleanliness-rating-value" ng-model="cleanliness" type="number" />
+            <br>
+        </div>
+
+        <br>
+        <div class="row">
+
+            <div ng-show="communicationShow" style="color:red">
+                Required Field
+            </div>
+
+            <div style="color:  #808080; font-size: 15px">
+                Communication
+            </div>
+
+            <div style="color:  #808080; font-size: 13px">
+                How clearly did the guest abide by the rules, regulations and warnings?
+            </div>
+
+            <input id="communication-rating-value" ng-model="communication" type="number" />
+
+            <br>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+
+            <div ng-show="houserulesShow" style="color:red">
+                Required Field
+            </div>
+
+            <div style="color:  #808080; font-size: 15px">
+                Observance of House Rules
+            </div>
+
+            <div style="color:  #808080; font-size: 13px">
+                Did the Guest obey the House rules?
+            </div>
+
+            <input id="houserules-rating-value" ng-model="houserules" type="number" />
+
+            <br>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div ng-show="recoShow" style="color:red">
+                Required Field
+            </div>
+
+            <div style="color:  #808080; font-size: 15px">
+                Would you recommend this guest?
+            </div>
+
+            <div style="color:  #808080; font-size: 13px">
+                Your answer will not be posted on your profile or your Guest's profile.
+            </div>
+
+            <div class="list-group">
+                <button style="font-size:14px" ng-model = "recommend_no" ng-click="btn_rec_no()"> <i class="fa fa-thumbs-down"></i> No</button>
+                <button style="font-size:14px" ng-model = "recommend_yes" ng-click="btn_rec_yes()"> <i class="fa fa-thumbs-up"></i> Yes!</button>
+                <div ng-show="recommendYes">
+                    You recommend this Guest
+                </div>
+                <div ng-show="recommendNo">
+                    You DO NOT recommend this Guest
+                </div>
+
+            </div>
+
+
+            <br>
+
+        </div>
+
+
+        <br>
+
+<!-- row here -->
+
+        <br>
+        <div class="row">
+            <div class="col-md-2">
+                <button type="button" id="rateSubmit" style="height: 45px;" class="btn btn-primary btn-block" ng-click="btn_rate()">Submit</button>
+            </div>
+        </div>
+
+    </div>    <!-- right side end -->
+
+</div>
+
+<script>
+
+    jQuery(document).ready(function () {
+        $('#cleanliness-rating-value').rating({
+            min: 0,
+            max: 5,
+            step: 1,
+            size: 'xs',
+            showClear: false,
+            starCaptions : false
+        });
+    });
+
+    jQuery(document).ready(function () {
+        $('#houserules-rating-value').rating({
+            min: 0,
+            max: 5,
+            step: 1,
+            size: 'xs',
+            showClear: false,
+            starCaptions : false
+        });
+    });
+
+    jQuery(document).ready(function () {
+        $('#communication-rating-value').rating({
+            min: 0,
+            max: 5,
+            step: 1,
+            size: 'xs',
+            showClear: false,
+            starCaptions : false
+        });
+    });
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<head>
+  <style>
+    div.logo {
+      position: fixed;
+
+      left: 20px;
+    }
+    div.fixedImage {
+
+      top: 130px;
+      left: 160px;
+    }
+
+    #searchID {
+      border-color: #ff5a5f;
+      background-color: #ff5a5f;
+      color: #fff;
+    }
+    .a{
+      background:none!important;
+      border:none;
+      padding:0!important;
+      font: inherit;
+      cursor: pointer;
+    }
+
+
+  </style>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+
+  <script src="angularjs/admin.js"></script>
+
+</head>
+<body ng-app="admin" ng-controller="admin">
+<a href="/success_Admin_ab"><img src="airbnb.png" width="40" height="50" style="float:left;padding-top:0.5cm;"></a>
+<div class="pull-right">
+  <button type="button" class="a" onclick="window.location.href='/checkInactiveHosts_ab'" style="font-size:18px;">Messages<span class="badge" style="color: #ffffff; background-color: #00a699; font-size: 10px"><%- inactive %></span></button>
+</div>
+
+<br><br><br><br><br><br><br><br><br>
+<div class="col-md-3">
+
+</div>
+
+<div class="col-md-8">
+  <div class="row">
+    <font size="16" color="ff5a5f">Welcome to Admin Portal</font>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+
+    </div>
+
+    <div class="col-md-4">
+      <br><br>
+      <button type="button" id="searchID" style="height: 45px;" class="btn btn-block" onclick="window.location.href='/search_Hosts_ab'">Search Hosts</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+
+    </div>
+
+    <div class="col-md-4">
+      <br><br>
+      <button type="button" id="searchID" style="height: 45px;" class="btn btn-block" onclick="window.location.href='/search_BillsPage_ab'">Search bills</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+
+    </div>
+
+    <div class="col-md-4">
+      <br><br>
+      <button type="button" id="searchID" style="height: 45px;" class="btn btn-block" onclick="window.location.href='/search_Users_ab'">Search Users</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+
+    </div>
+
+    <div class="col-md-4">
+      <br><br>
+      <button type="button" id="searchID" style="height: 45px;" class="btn btn-block" onclick="window.location.href='/view_Graph_ab'">View Dashboard</button>
+    </div>
+  </div>
+
+</div>
+
+
+</body>
+</html>

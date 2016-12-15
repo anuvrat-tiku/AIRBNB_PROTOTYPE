@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <head>
+    <style>
+      div.logo {
+        position: fixed;
+        top: 5px;
+        left: 20px;
+      }
+      div.fixedImage {
+
+        top: 130px;
+        left: 160px;
+      }
+
+      #searchID {
+        border-color: #ff5a5f;
+        background-color: #ff5a5f;
+        color: #fff;
+      }
+      .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+background-color:white;
+}
+.header {
+    right:10px;
+    position:absolute;
+    z-index: 90;
+}
+
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropbtn{
+    background:none!important;
+            border:none;
+            padding:0!important;
+            font: inherit;
+            cursor: pointer;
+}
+
+
+
+    </style>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <script src="angularjs/index.js"></script>
+
+  </head>
+  <body ng-app="index" ng-controller="index">
+ 
+  <div class="row">
+    
+
+
+    <div id="header_menu"></div>
+      <script type="text/javascript" src="./js/user_header.js"></script>
+</div>
+
+
+  <!-- Become a host modal - tirath -->
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="text-align:center;">Sign Up</h4>
+        </div> <br />
+        <div class="container-fluid">
+
+          <button type="submit" class="button1">
+            <i class="fa fa-facebook" style="float:left;"></i><span class="tex">Sign up with Facebook</span>
+          </button>
+          <br>
+          <button type="submit" class="button2">
+            <img src="google-logo.png" style="width:15px; height:15px;float:left;"><span class="tex">Sign up with Google</span>
+          </button><br>
+          <table width="100%">
+            <td><hr /></td>
+            <td style="width:1px; padding: 0 10px; white-space: nowrap;">or</td>
+            <td><hr /></td>
+          </table>
+          <button type="submit" class="button3" data-toggle="modal" data-target="#myModal2">
+            <i class="fa fa-envelope-o" style="float:left;"></i><span class="tex">Sign up with Email</span>
+          </button><br> <br>
+          By signing up, I agree to Airbnb’s <span style="color:#008489; font-size:14px;">Terms of Service, Nondiscrimination Policy, Payments Terms of Service, Privacy Policy, <u>Guest Refund Policy</u>, and Host Guarantee Terms.</span>
+          <hr />
+          <span style="color:#008489; font-size:20px;">Already have a Airbnb account?</span><br />
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="login" data-toggle="modal" data-target="#myModal1">Log in</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="container-fluid">
+
+          <button type="submit" class="button1">
+            <i class="fa fa-facebook" style="float:left;"></i><span class="tex">Sign up with Facebook</span>
+          </button>
+          <br>
+          <button type="submit" class="button2">
+            <img src="google-logo.png" style="width:15px; height:15px;float:left;"><span class="tex">Sign up with Google</span>
+          </button><br>
+          <table width="100%">
+            <td><hr /></td>
+            <td style="width:1px; padding: 0 10px; white-space: nowrap;">or</td>
+            <td><hr /></td>
+          </table>
+          <form method="POST" action="/signinHost">
+            <input type="email" placeholder="Email" name="email" required> <br /><br />
+            <input type="password" placeholder="Password" name="password" required>  <br /> <br />
+            <input type="submit" value="Log in" class="button3"> </form>
+          <hr />
+          <span style="color:#008489; font-size:20px;">Don't have a account?</span>
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="login" data-toggle="modal" data-target="#myModal2">Sign up</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+  <div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="text-align:center;">Sign Up</h4>
+        </div> <br />
+        <div class="container-fluid">
+
+          <form action="/signupHost" method="POST">
+            <input type="text" placeholder="First Name" name="first" required> <br /><br />
+            <input type="text" placeholder="Last Name" name="last" required>  <br /> <br />
+            <input type="email" placeholder="Email" name="email" required> <br /><br />
+            <input type="password" placeholder="Password" name="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}$" required>  <br /><br />
+            By signing up, I agree to Airbnb’s <span style="color:#008489; font-size:14px;">Terms of Service, Nondiscrimination Policy, Payments Terms of Service, Privacy Policy, <u>Guest Refund Policy</u>, and Host Guarantee Terms.</span> <br /> <br />
+            <input type="submit" value="Sign up" class="button3"> </form>
+
+          <hr />
+          <span style="color:#008489; font-size:20px;">Already have a Airbnb account?</span><br />
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="login" data-toggle="modal" data-target="#myModal1">Log in</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Become a host modal tirath end -->
+
+
+    <!-- Modal -->
+
+    <div class="modal fade" id="signUpModal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h4 class="modal-title" style="text-align:center;">Sign Up</h4>
+          </div>
+
+          <div class="container-fluid">
+
+            <!-- <div class="col-md-12"> -->
+              <br>
+              <div class="modal-body">
+                <img onclick="window.location.href='/facebookSignup'" src="/images/facebook-signup.png"  width="520px" height="60px">
+                <br><br>
+                <img onclick="window.location.href='/googleSignup'" src="/images/google-signup.png"  width="520px" height="65px">
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;   or
+                <img data-toggle="modal" data-target="#signUpDetailModal" src="/images/signup-email.png"  width="520px" height="70px">
+              </div>
+            <!-- </div> -->
+
+            <div class="col-md-12">
+              <small style="font-size: 12px; font-family: 'Helvetica neue',Helvetica,Arial,sans-serif; color:black ">
+                By signing up, I agree to Airbnb’s <a><font color="#2e8b57">Terms of Service</font></a>, <a><font color="#2e8b57">Nondiscrimination
+                Policy</font></a>, <a><font color="#2e8b57">Payments Terms of Service</font></a>, <a><font color="#2e8b57">Privacy Policy</font></a>, <a><font color="#2e8b57">Guest Refund Policy</font></a>, and <a><font color="#2e8b57">Host Guarantee Terms</font></a>.
+              </small>
+              <hr>
+
+              <font size="3" color="#2e8b57">Already have an Airbnb account? </font>
+
+              &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <img data-toggle="modal" data-target="#signInModal" src="/images/login_button.png"  width="100px" height="50px">
+
+              <br>
+
+            </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- end modal -->
+
+  <!-- Modal -->
+
+  <div class="modal fade" id="signUpDetailModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4 class="modal-title" style="text-align:center;">Sign Up Details</h4>
+        </div>
+
+        <div ng-show="emailexists">
+          <div class="alert alert-danger">
+            <span class="glyphicon glyphicon-exclamation-sign" style="color:  #C0C0C0; font-size: 25px"></span>This email already exists
+          </div>
+        </div>
+
+        <div class="container-fluid">
+
+            <br>
+
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Sign up with <a><font color="#2e8b57">Facebook</font></a> or <a><font color="#2e8b57">Google</font></a>
+
+            <div class="modal-body">
+
+              &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;   or
+
+                <div ng-show="firstnamerequired" style="color:red">First name is required.</div>
+                <input type="text" style="margin-bottom: 10px;" class="form-control input-lg" style="font-size:12pt; height: 35px;" id="firstname" name="firstname" placeholder="First name" ng-model="firstname" width="120px" height="60px" required>
+
+                <div ng-show="lastnamerequired" style="color:red">Last name is required.</div>
+                <input type="text" style="margin-bottom: 10px;" class="form-control input-lg" style="font-size:12pt; height: 35px;" id="lastname" name="lastname" placeholder="Last name" ng-model="lastname" required>
+
+                <div ng-show="emailrequired" style="color:red">Email is required.</div>
+                <input type="email" style="margin-bottom: 10px;" class="form-control input-lg" style="font-size:12pt; height: 35px;" id="email" name="email" placeholder="Email Address" ng-model="email" required>
+
+              <ng-form name="passwordForm">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div ng-show="incorrectFormat" style="color:red">Enter Password in correct format.</div>
+                    <div ng-show="passwordrequired" style="color:red">Invalid Password format.</div>
+                    <input type="password" style="margin-bottom: 10px;" style="font-size:12pt; height: 35px;" id="password" name="password" class="form-control input-lg" placeholder="Create Password" ng-pattern="/^[A-Za-z]{1}[a-zA-Z0-9!@#$-_]{5,10}$/" ng-model="password" required>
+                    <span ng-show="passwordForm.password.$error.pattern" style="color:#b3b3b3">1. Use 6 to 64 characters.<br>2. Besides letters, include at least a number or symbol.<br>3. Password is case sensitive.<br>4. Avoid using the same password for multiple sites.</span>
+                  </div>
+                </div>
+              </ng-form>
+
+                <br>
+                <!-- <div class="row">
+                  &emsp;<b>Birthday</b><span class="glyphicon glyphicon-question-sign" style="color:  #000000; font-size: 15px"></span>
+                </div>
+
+                <div class="row">
+                  <div ng-show="dobrequired">Select your birth date to continue.</div>
+                  <div class="col-md-3">
+                    &emsp; <select name="month" id="month"
+                            ng-options="options.name for options in month.options track by options.id"
+                            ng-model="month.selectedMonth"></select>
+                  </div>
+
+                   <div class="col-md-1">
+                     &emsp; <select name="day" id="day"
+                                    ng-options="options.name for options in day.options track by options.id"
+                                    ng-model="day.selectedDay"></select>
+                   </div>
+
+                   <div class="col-md-4">
+                     &emsp; <select name="year" id="year"
+                                    ng-options="options.name for options in year.options track by options.id"
+                                    ng-model="year.selectedYear"></select>
+                   </div>
+                </div> -->
+
+                <div class="col-md-12" style="margin: 10px;">
+                  <button type="button" id="searchID" style="height: 45px;" class="btn btn-primary btn-block" ng-click="btn_signup()">Sign Up</button>
+                  <hr>
+                </div>
+
+
+                <div class="row">
+                  <div class="col-md-8">
+                    <font size="3" color="#2e8b57">Already have an Airbnb account? </font>
+                  </div>
+
+                  <div class="col-md-3">
+                    <img data-toggle="modal" data-target="#signInModal" src="/images/login_button.png"  width="100px" height="50px">
+                  </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- modal end -->
+
+
+
+  <!-- Modal -->
+
+  <div class="modal fade" id="signInModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4 class="modal-title" style="text-align:center;">Log In</h4>
+        </div>
+
+        <div ng-show="invalidpassword">
+        <div class="alert alert-danger">
+          <span class="glyphicon glyphicon-exclamation-sign" style="color:  #C0C0C0; font-size: 25px"></span>Invalid Username/Password
+        </div>
+        </div>
+
+        <div class="container-fluid">
+            <br>
+
+            <img onclick="window.location.href='/facebookSignup'" src="/images/facebook-signin.png"  width="550px" height="70px">
+            <br><br>
+            <img onclick="window.location.href='/googleSignup'" src="/images/google-signin.png"  width="550px" height="80px">
+
+            <div class="modal-body">
+              &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;   or
+                <div ng-show="emailrequired" style="color:red">Email is required.</div>
+                <input type="email" style="margin-bottom: 10px;" class="form-control input-lg" style="font-size:12pt; height: 35px;" id="emailSignin" name="emailSignin" placeholder="Email Address" ng-model="emailSignin" required>
+
+                <div ng-show="passwordrequired" style="color:red">Password is required.</div>
+                <input type="password" style="margin-bottom: 10px;" class="form-control input-lg" style="font-size:12pt; height: 35px;" id="passwordSignin" name="passwordSignin" placeholder="Password" ng-model="passwordSignin" required>
+
+                <br>
+
+                  &emsp;<input type="checkbox" name="staysignin" checked> Remember me
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                  <a><font color="#2e8b57">Reset password</font></a>
+
+
+                <div class="col-md-12" style="margin: 10px;">
+                  <button type="button" id="searchID" style="height: 45px;" class="btn btn-primary btn-block" ng-click="btn_signin()">Login</button>
+                  <hr>
+                </div>
+
+
+                <div class="row">
+                  <div class="col-md-8">
+                    <font size="3" color="#2e8b57">Don't have an account? </font>
+                  </div>
+
+                 <!--  <div class="col-md-3">
+                    <img data-toggle="modal" data-target="#signUpModal" src="/images/signup-button.png"  width="100px" height="50px">
+                  </div> -->
+                </div>
+
+
+                <br><br>
+            </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- modal end -->
+
+  <br><br><br><br>
+
+  <div class="row">
+    <div class="col-md-1">
+
+    </div>
+
+    <div class="fixedImage">
+      <img src="/images/index-1.png" width="750px" height="120px">
+    </div>
+
+  </div>
+
+  <br><br><br>
+
+  <div class="row">
+    <div class="col-md-1">
+
+    </div>
+
+    <div class="col-md-11">
+    <div ng-show="noPropertyExists">
+        <div class="alert alert-danger">
+          <span class="glyphicon glyphicon-exclamation-sign" style="color:  #C0C0C0; font-size: 25px"></span>No Properties found for given dates and location.
+        </div>
+      </div>
+      <div ng-show="checkinGreater">
+        <div class="alert alert-danger">
+          <span class="glyphicon glyphicon-exclamation-sign" style="color:  #C0C0C0; font-size: 25px"></span>Checkout date should be after checkin date.
+        </div>
+      </div>
+       <div ng-show="checkinCannotBeSame">
+        <div class="alert alert-danger">
+          <span class="glyphicon glyphicon-exclamation-sign" style="color:  #C0C0C0; font-size: 25px"></span>Checkout cannot be same day as check in.
+        </div>
+      </div>
+      <div ng-show="checkinGreaterThanToday">
+        <div class="alert alert-danger">
+          <span class="glyphicon glyphicon-exclamation-sign" style="color:  #C0C0C0; font-size: 25px"></span>CheckIn should be 2 days ahead atleast from today.
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          Where
+          <br>
+          <input type="text" class="form-control input-lg" ng-model="destination" size="1" placeholder="Destination, city, address" style="width:275px;height:45px;">
+        </div> <!-- col 3 -->
+
+        <div class="col-md-3">
+          When
+          <div ng-show="invalidcheckin" style="color:red">Please enter a valid Checkin Date.</div>
+          <br>
+          <input type="text" class="form-control input-lg" ng-model="checkin" size="1" placeholder="checkin" style="width:275px;height:45px;">
+
+        </div>
+        <div class="col-md-3">
+          <div ng-show="invalidcheckout" style="color:red">Please enter a valid Checkout Date.</div>
+          <br>
+          <input type="text" class="form-control input-lg" ng-model="checkout" size="1" placeholder="checkout" style="width:275px;height:45px;">
+        </div>
+
+        <div class="col-md-1">
+          Guests
+          <br>
+          <select style="height: 45px;width:60px;" name="guests" id="guests"
+                  ng-options="options.name for options in guests.options track by options.id"
+                  ng-model="guests.selectedCount"></select>
+        </div>
+        <div class="col-md-2">
+          <br>
+          <button type="button" style="height: 45px;" id="searchID" class="btn btn-primary btn-large btn-block" type="submit" ng-click="btn_search()">Search</button>
+        </div>
+      </div> <!-- row -->
+
+    </div> <!-- col 11 -->
+
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-1">
+
+    </div>
+
+    <div class="col-md-3">
+    <br />
+      <font size="4">Explore the world</font><br /><br />
+    </div>
+    </div>
+
+    <div class="row">
+     <!--  <div class="col-md-1"> -->
+
+      <!-- </div> -->
+
+      <div class="col-md-6">
+        <img src="/images/Paris.png" width="600px" height="340px">
+      </div>
+
+      <div class="col-md-3">
+        <div clas="row">
+          <img src="/images/Rome.png" width="290px" height="160px">
+        </div>
+        <br>
+        <div clas="row">
+          <img src="/images/Lisbon.png" width="290px" height="160px">
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div clas="row">
+          <img src="/images/LA.png" width="290px" height="160px">
+        </div>
+        <br>
+        <div clas="row">
+          <img src="/images/Tokyo.png" width="290px" height="160px">
+        </div>
+      </div>
+
+    <div class="col-md-1">
+
+    </div>
+
+    </div>
+<br>
+  <div class="row">
+
+    <div class="col-md-3">
+      <div clas="row">
+        <img src="/images/London.png" width="290px" height="160px">
+      </div>
+      <br>
+      <div clas="row">
+        <img src="/images/Barcelona.png" width="290px" height="160px">
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <img src="/images/newyork.png" width="600px" height="340px">
+    </div>
+
+    <div class="col-md-3">
+      <div clas="row">
+        <img src="/images/amsterdam.png" width="290px" height="160px">
+      </div>
+      <br>
+      <div clas="row">
+        <img src="/images/berlin.png" width="290px" height="160px">
+      </div>
+    </div>
+
+  </div>
+
+
+
+  </body>
+</html>

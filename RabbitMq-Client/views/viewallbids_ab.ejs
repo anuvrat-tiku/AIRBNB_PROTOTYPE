@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<title><%- title %> </title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="angularjs/index.js"></script>
+
+</head>
+
+<body>
+
+
+<div class="container" style="margin: 10px;">
+
+    <div class="col-md-2">
+
+    </div>
+
+    <div class="col-md-8">
+
+
+
+    <table class="table table-bordered table-inverse">
+        <thead>
+        <tr>
+
+            <th>Bidder</th>
+            <th>Bid Amount</th>
+            <th>Bid Time</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% for(i in bids) { %>
+        <tr>
+
+            <td><%= bids[i].userfname %></td>
+            <td><%= bids[i].bidPrice %></td>
+            <td><%= bids[i].bidTime %></td>
+        </tr>
+
+        <% } %>
+        </tbody>
+    </table>
+
+    </div>
+</div>
+
+</body>
+</html>

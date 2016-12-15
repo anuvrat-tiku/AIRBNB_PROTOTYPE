@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Transaction History - Airbnb</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<style>
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+background-color:white;
+}
+
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.main{
+ 
+}
+.heading{
+  font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 25px;
+    line-height: 1.43;
+   color:#8f8f8f;
+    margin: 0 auto;
+        -webkit-font-smoothing: antialiased;
+}
+.photo{
+  margin-left: 170px;
+    }
+.left{
+ padding-left:2cm;
+ max-width:30%;
+float:left;
+
+}
+.right{
+padding-left:7cm;
+}
+button {
+     background:none!important;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     cursor: pointer;
+}
+input[type="submit"] {
+background:#ff5a5f;
+color:white;
+width:150px;
+height:40px;
+}
+input[type="text"] {
+width:400px;
+height:30px;
+}
+input[type="email"] {
+width:400px;
+height:30px;
+}
+.panel-default {
+
+  width:850px;
+height:440px;
+  
+}
+.header {
+  right:10px;
+  position:absolute;
+  z-index: 90;
+}
+nav{
+  z-index:1;
+}
+</style>
+
+</head>
+<body>
+<div class="container-fluid">
+  <div id="header_menu"></div>
+<script type="text/javascript" src="./js/header.js"></script>
+<div id="navMenu"></div>
+<script type="text/javascript" src="./js/nav_bar.js"></script>
+
+
+<div class="right">
+<div class="panel panel-default">
+    <div class="panel-heading">Completed Transactions</div>
+    <div class="panel-body">
+      <% if(rec.length==0) {%>
+     <h3><strong> No Transactions </strong> </h3> 
+     <% } %>
+     <div class="table">
+<table class="table table-striped table-hover" style="width:100%">
+  <tr>
+  <th>Date</th>
+  <th>Type</th>
+  <th>Details</th>
+  <th>Amount</th>
+</tr>
+
+    <% for(var i=0;i<rec.length;i++) {%>
+    <tr>
+ <td><%= rec[i].bill_date %> </td>
+ <td>Credit Card </td>
+ <td><%= rec[i].user_fname %> booked property <%= rec[i].prop_type %> from <%= rec[i].from_date %> to <%= rec[i].to_date %></td>
+ <td>$<%= rec[i].total %>  </td>
+</tr>
+ <% } %>
+</table>
+</div>
+</div>
+  </div>
+
+
+</div>
+
+
+  
+
+</div> 
+
+
+</body>
+</html>

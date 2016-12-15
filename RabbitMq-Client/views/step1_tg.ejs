@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Become a Host and Rent Out Your Room, House or Apartment on Airbnb</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<style>
+.button3{
+background:#ff5a5f;
+height:46px;
+width:550px;
+ border: none;
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 15px;
+ margin: 4px 2px;
+ cursor: pointer;
+}
+
+#login{
+outline:  1px solid #ff5a5f;
+float:right;
+}
+input[type="email"] {
+    height:46px;
+width:550px;
+outline:  1px solid #aaaaaa;
+}
+input[type="password"] {
+    height:46px;
+width:550px;
+outline:  1px solid #aaaaaa;
+}
+input[type="submit"] {
+  background:#ff5a5f;
+  padding: 10px;
+float:right;
+  display: block;
+  width: 100px;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+}
+input[type="text"] {
+ width:370px;
+ height:40px;
+}
+
+.heading{
+  font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 25px;
+    line-height: 1.43;
+    color: #484848;
+    margin: 0 auto;
+}
+.photo{
+  padding-left: 2cm;
+    }
+#ex1{
+  background:#00a699;
+}
+#right{
+  background-color:#fafafa;
+  
+}
+.head{
+
+  background:#FFFFFF;
+}
+
+.panel-default {
+  height: 390px; 
+  width:300px;
+  padding-right:2cm;
+}
+</style>
+
+</head>
+<body style="                        height: 100%;
+    background: linear-gradient(90deg, #FFFFFF 50%, #FAFAFA 50%);">
+<div class="container-fluid">
+  <div class="head">
+  <a href="/host_home">
+<img src="air1.png" width="120" height="65"> 
+</a> &nbsp &nbsp Step 1: Start with the basics<br />
+<hr /></div>
+ <br /> 
+<div class="total" style="background-color:#fafafa;">
+ <div id="left" style="float:left; width:60%;">
+<div class="col-md-8 col-md-offset-1">
+<div class="main">
+<br /> <br />
+    <div style="
+    font-size: 22px;
+    line-height: 1.43;
+    color: #484848;">What kind of place are you listing?</div> <br /> <br /> <br />
+    <form method="POST" action="/hoststep1">
+ 
+    <span style="
+    font-size: 18px;
+    line-height: 1.43;
+    color: #a9a9a9;">What type of property is this?</span> <br />
+    <div class="form-group" style="width:300px;">
+      <select class="selectpicker form-control" name="type">
+  <option title="House">House</option>
+  <option title="Apartment">Apartment</option>
+  <option title="Boutique Hotel">Boutique Hotel</option>
+  <option title="Nature Lodge">Nature Lodge</option>
+  <option title="Hostel">Hostel</option>
+  <option title="Serviced apartment">Serviced apartment</option>
+  <option title="Boutique Hotel">Boutique Hotel</option>
+ </select>
+    </div>
+   <br /> 
+  <span style="
+    font-size: 18px;
+    line-height: 1.43;
+    color: #a9a9a9;">What will guests have?</span> <br />
+ 
+    <div class="form-group" style="width:300px;">
+      <select class="selectpicker form-control" name="guest_place">
+  <option title="Entire place">Entire place</option>
+  <option title="Private Room">Private Room</option>
+  <option title="Shared Room">Shared Room</option>
+ </select> <br /> <hr /> <br />
+ <a href="/hostbegin" style="color:#989898;"><i class="fa fa-arrow-left"></i>&nbsp Back</a>
+ <input type="submit" value="Next">
+ </form>
+ </div>
+    </div>
+ </div> 
+
+</div>
+</div>
+
+<div id="right" style="float:right; width:40%;">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <br />
+      <img src="bulb.png" width="40" height="40"> <br /> 
+Entire place<br />
+<span style="color:#7a7a7a;">Guests will rent the entire<br /> place. Includes in-law<br /> units.<br /><br /> </span>
+
+Private room<br />
+<span style="color:#7a7a7a;">Guests share some<br /> spaces but they’ll have<br /> their own private room<br /> for sleeping.<br /><br /></span>
+
+Shared room<br />
+<span style="color:#7a7a7a;">Guests don’t have a room<br /> to themselves.</span>
+</div>
+  </div>
+
+
+
+
+</div>
+  
+</div>
+</div>
+
+
+</body>
+</html>
+

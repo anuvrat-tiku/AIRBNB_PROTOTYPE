@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Become a Host and Rent Out Your Room, House or Apartment on Airbnb</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+     <!-- Load jQuery and the validate plugin -->
+  <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<script>
+$(function() {
+            $.validator.addMethod("regx", function(value, element, regexpr) {          
+    return regexpr.test(value);
+}, "Please enter a valid pasword.");
+         $.validator.addMethod("regx1", function(value, element, regexpr) {          
+    return regexpr.test(value);
+}, "Please enter a valid pasword.");
+                 $.validator.addMethod("regx2", function(value, element, regexpr) {          
+    return regexpr.test(value);
+}, "Please enter a valid pasword.");
+                         $.validator.addMethod("regx3", function(value, element, regexpr) {          
+    return regexpr.test(value);
+}, "Please enter a valid pasword.");
+                                 $.validator.addMethod("regx4", function(value, element, regexpr) {          
+    return regexpr.test(value);
+}, "Please enter a valid pasword.");
+ 
+   $("#location").validate({
+    rules: {
+      zip: {
+      required:true,
+      regx:/^[0-9]{5}(?:-[0-9]{4})?$/
+      },
+      country:{
+        required:true,
+        regx1:/[a-zA-Z ]+/
+      },
+        street:{
+        required:true,
+        regx2:/^\s*\S+(?:\s+\S+){2}/
+      },
+        state:{
+        required:true,
+        regx3:/AL|Alabama|AK|Alaska|AZ|Arizona|AR|Arkansas|CA|California|CO|Colorado|CT|Connecticut|DE|Delaware|FL|Florida|GA|Georgia|HI|Hawaii|ID|Idaho|IL|Illinois|IN|Indiana|IA|Iowa|KS|Kansas|KY|Kentucky|LA|Louisiana|ME|Maine|MD|Maryland|MA|Massachusetts|MI|Michigan|MN|Minnesota|MS|Mississippi|MO|Missouri|MT|Montana|NE|Nebraska|NV|Nevada|NH|New Hampshire|NJ|New Jersey|NM|New Mexico|NY|New York|NC|North Carolina|ND|North Dakota|OH|Ohio|OK|Oklahoma|OR|Oregon|PA|Pennsylvania|RI|Rhode Island|SC|South Carolina|SD|South Dakota|TN|Tennessee|TX|Texas|UT|Utah|VT|Vermont|VA|Virginia|WA|Washington|WV|West Virginia|WI|Wisconsin|WY|Wyoming/
+      },
+        city:{
+        required:true,
+        regx4:/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/
+      }
+   
+     
+    },
+    
+
+    // Specify validation error messages
+    messages: {
+      zip: {
+      required:"Please enter ZIP",
+      regx:"Please enter a valid pattern"
+      },
+       country: {
+      required:"Please enter Country",
+      regx1:"Please enter a valid pattern"
+      },
+       street: {
+      required:"Please enter Street",
+      regx2:"Please enter a valid pattern"
+      },
+       state: {
+      required:"Please enter State",
+      regx3:"Please enter a valid pattern"
+      },
+       city: {
+      required:"Please enter City",
+      regx4:"Please enter a valid pattern"
+      }
+      
+    },
+    
+
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+</script>
+<style>
+.button3{
+background:#ff5a5f;
+height:46px;
+width:550px;
+ border: none;
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 15px;
+ margin: 4px 2px;
+ cursor: pointer;
+}
+
+#login{
+outline:  1px solid #ff5a5f;
+float:right;
+}
+input[type="email"] {
+    height:46px;
+width:550px;
+outline:  1px solid #aaaaaa;
+}
+input[type="password"] {
+    height:46px;
+width:550px;
+outline:  1px solid #aaaaaa;
+}
+input[type="submit"] {
+  background:#ff5a5f;
+  padding: 10px;
+float:right;
+  display: block;
+  width: 100px;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+}
+input[type="text"] {
+ width:370px;
+ height:40px;
+}
+
+.heading{
+  font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 25px;
+    line-height: 1.43;
+    color: #484848;
+    margin: 0 auto;
+}
+.photo{
+  padding-left: 2cm;
+    }
+#ex1{
+  background:#00a699;
+}
+.head{
+
+  background:#FFFFFF;
+}
+
+
+.panel-default {
+  height: 270px; 
+  width:320px;
+  padding-right:2cm;
+}
+</style>
+
+
+</head>
+<body style="                        height: 100%;
+    background: linear-gradient(90deg, #FFFFFF 55%, #FAFAFA 45%);">
+<div class="container-fluid" >
+  <div class="head">
+  <a href="/host_home">
+<img src="air1.png" width="120" height="65"> 
+</a> &nbsp &nbsp Step 1: Start with the basics<br /> 
+<hr /></div>
+ <br /> 
+<div class="total"  > 
+ <div id="left" style="float:left; width:60%;">
+<div class="col-md-8 col-md-offset-1">
+<div class="main">
+<br /> <br />
+    <div style="
+    font-size: 22px;
+    line-height: 1.43;
+    color: #484848;">Where’s your place located?</div> <br /> <br /> 
+    <form method="POST" action="/hoststep1_location" id="location" name="location" novalidate="novalidate">
+ <div class="location"> 
+ <span style="line-height: 1.43;color: #484848;font-size:16px;">Country<br />
+  <input type="text" name="country" id="country" pattern="[a-zA-Z ]+" placeholder="e.g. Canada" > <br /> <br />
+   <span style="line-height: 1.43;color: #484848;font-size:16px;">Street<br />
+ <input type="text" name="street" id="street" placeholder="e.g. 123 Main St." > <br /> <br />
+  <span style="line-height: 1.43;color: #484848;font-size:16px;">Apt, Suite, Bldg.(optional)<br />
+  <input type="text" name="apt" id="apt" placeholder="e.g. Apt #7" > <br /><br />
+  <span style="line-height: 1.43;color: #484848;font-size:16px;">City<br />
+  <input type="text" name="city" id="city" placeholder="e.g. San Francisco" pattern="[a-zA-Z ]+" > <br /><br />
+   <span style="line-height: 1.43;color: #484848;font-size:16px;">State<br />
+  <input type="text" name="state" pattern="[a-zA-Z]{2}" size="2" id="state" placeholder="e.g. CA" > <br /><br />
+   <span style="line-height: 1.43;color: #484848;font-size:16px;">ZIP Code<br />
+  <input type="text" name="zip" pattern="^\d{5}$" id="zip" placeholder="e.g. 94103"  > <br />
+
+
+ </div>
+
+
+    
+   <br /> <br />
+  
+     
+ <br /> <hr /> <br />
+ <a href="/step1_bathroom" style="color:#989898;"><i class="fa fa-arrow-left"></i>&nbsp Back</a>
+ <input type="submit" value="Next" name="submit"></form>
+   
+ </div> 
+
+</div>
+</div>
+
+<div id="right" style="float:right; width:40%;">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <br />
+      <img src="bulb.png" width="40" height="40"> <br /> 
+<br />
+<span style="color:#7a7a7a;">Your exact address will only be<br /> shared with confirmed guests. </span>
+
+</div>
+  </div>
+
+
+
+
+</div>
+  
+
+</div>
+</div>
+
+</body>
+</html>

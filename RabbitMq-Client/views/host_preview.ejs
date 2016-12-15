@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+
+  <style>
+
+    .glyphicon.glyphicon-search{
+      font-size: 30px;
+      top: 10px;
+    }
+
+    #search_bar{
+      border: none;
+      outline: none;
+    }
+
+    .top_nav_links {
+      color: black;
+      display: inline-block;
+      color: grey;
+      font-family: Helvetica;
+    }
+
+    
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+background-color:white;
+}
+
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.main{
+ 
+}
+.heading{
+  font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 25px;
+    line-height: 1.43;
+   color:#8f8f8f;
+    margin: 0 auto;
+        -webkit-font-smoothing: antialiased;
+}
+.photo{
+  margin-left: 170px;
+    }
+.left{
+ padding-left:2cm;
+width:350px;
+height:350px;
+float:left;
+}
+.right{
+padding-right:8cm;
+width:350px;
+height:350px;
+float:right;
+}
+button {
+     background:none!important;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     cursor: pointer;
+}
+input[type="submit"] {
+background:#ff5a5f;
+color:white;
+width:150px;
+height:40px;
+}
+input[type="text"] {
+width:400px;
+height:30px;
+}
+input[type="email"] {
+width:400px;
+height:30px;
+}
+.panel-default {
+  width:1200px;
+height:340px;
+  
+}
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+    .view_photos_button {
+      position: absolute;
+      top: 550px;
+      left: 40px;
+    }
+
+    .description {
+      font-family: "Century Schoolbook L";
+      color: black;
+      font-size: 34px;
+    }
+
+    #img-circle-x {
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+    }
+
+    span.stars, span.stars span {
+      display: block;
+      background: url("images/Star.png") 0 -16px repeat-x;
+      width: 80px;
+      height: 16px;
+    }
+
+    span.stars span {
+      background-position: 0 0;
+    }
+
+    #booking_well {
+      background : transparent;
+    }
+
+    .w3-btn-floating.w3-display-left {
+      position: absolute;
+      top : 300px;
+    }
+
+    .w3-btn-floating.w3-display-right {
+      position: absolute;
+      top : 300px;
+      right: 10px;
+    }
+    .header {
+  right:10px;
+  position:absolute;
+  z-index: 90;
+}
+nav{
+  z-index:1;
+}
+
+
+  </style>
+  <title>Preview</title>
+
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.1.1.js"
+          integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+          crossorigin="anonymous">
+
+  </script>
+
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <!-- Angular JS -->
+  <script src="javascripts/angular.js"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <!-- CDN for extra glyphicons -->
+  <script src="https://use.fontawesome.com/5cdf732636.js"></script>
+
+  <!-- Ionic icons -->
+  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+  <!-- Script to generate rating stars -->
+  <script>
+    $.fn.stars = function() {
+      return $(this).each(function() {
+        // Get the value
+        var val = parseFloat($(this).html());
+        val = Math.round(val * 4) / 4; /* To round to nearest quarter */
+        // Make sure that the value is in 0 - 5 range, multiply to get width
+        var size = Math.max(0, (Math.min(5, val))) * 16;
+        // Create stars holder
+        var $span = $('<span />').width(size);
+        // Replace the numerical value with stars
+        $(this).html($span);
+      });
+    }
+  </script>
+
+</head>
+
+
+<body>
+<div class="container-fluid">
+<div id="header_menu"></div>
+<script type="text/javascript" src="./js/header.js"></script>
+
+<div id="navMenu"></div>
+  <!-- Beginning of the row div class for property description-->
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="cover-image">
+        <!-- Cover Image for the background image -->
+        <a href="/#slideshow">
+          <!-- Cover Image will also show the like for the lside show -->
+          <div class="w3-content w3-display-container">
+          <% for(var i=0; i<propnames.length; i++) {%>
+            <img class="mySlides" src= <%= propnames[i] %> alt="cover image" style="width: 1160px; height: 602px">
+          <% } %>
+            <a class="w3-btn-floating w3-jumbo w3-display-left" onclick="plusDivs(-1)">&#10094;</a>
+            <a class="w3-btn-floating w3-display-right" onclick="plusDivs(1)">&#10095;</a>
+
+          </div>
+
+          <!-- Slideshow function -->
+          <script>
+            var slideIndex = 1;
+            showDivs(slideIndex);
+
+            function plusDivs(n) {
+              showDivs(slideIndex += n);
+            }
+
+            function showDivs(n) {
+              var i;
+              var x = document.getElementsByClassName("mySlides");
+              if (n > x.length) {slideIndex = 1}
+              if (n < 1) {slideIndex = x.length}
+              for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+              }
+              x[slideIndex-1].style.display = "block";
+            }
+          </script>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <br />
+
+  <!-- Property Description begins -->
+  <div class="row">
+
+    <!-- Padding for 2 columns -->
+    <div class="col-md-2"></div>
+
+    <!-- Column md 4 description, images and other parameters -->
+    <div class="col-md-6">
+
+      <!-- Row-1 for description and image -->
+      <div class="row">
+
+        <!-- Col-md-9 for display picture -->
+        <div class="col-md-9">
+          <div class="description">
+            <%= description %>
+          </div>
+        </div>
+
+        <!-- Col-md-3 for display picture -->
+        <div class="col-md-3">
+          <img id="img-circle-x" src= "hostprofileimg.jpg" alt="profile picture">
+          <br />
+
+          <font style="color: grey"><b><%= fname %></b></font>
+        </div>
+      </div>
+      <hr />
+
+
+      <div class = "row">
+      <!-- Glyphicon 1 for Room type -->
+      <div class = "col-md-3">
+      <span class="glyphicon glyphicon-home" style="font-size: 40px; color: lightgray; border: grey;"></span>
+      <br />
+      <font style="color: grey"><%= guest_place %></font>
+    </div>
+      <!-- Glyphicon 2 for number of guests -->
+      
+      <!-- Glyphicon 3 -->
+      <div class = "col-md-3">
+      <i class="fa fa-users" aria-hidden="true" style="font-size: 40px; color: lightgray; border: grey;"></i>
+      <br />
+      <font style="color: grey"><%= guest %></font>
+    </div>
+      
+      <div class = "col-md-3">
+      <!-- Glyphicon 4 -->
+      <i class="fa fa-clone" aria-hidden="true" style="font-size: 40px; color: lightgray; border: grey;"></i>
+      <br />
+      <font style="color: grey"><%= bed %></font>
+    </div>
+      
+      <div class = col-md-3>
+      <i class="fa fa-bed" aria-hidden="true" style="font-size: 40px; color: lightgray; border: grey;"></i>
+      <br />
+      <font style="color: grey"><%= bed %></font>
+    </div>
+      <br />
+
+    </div>
+    
+
+      <hr />
+
+      <!-- The space details -->
+      <div class="row" style="color: grey; font-size: 20px">
+        <!-- "The Space" column -->
+        <div class="col-md-4">
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <b>The Space</b>
+        </div>
+        <div class="col-md-4">
+          Accommodates: <b><%= guest %></b><br />
+          Bathrooms: <b><%= bathroom %></b><br />
+          Beds: <b><%= bed %></b><br />
+        </div>
+        <div class="col-md-4">
+          Check In: <b>Anytime after 3 P.M.</b> <br />
+          Check Out: <b>12 P.M.(noon)</b> <br />
+          Property Type: <b>Apartment</b><br />
+          Room Type: <b><%= place %></b><br />
+        </div>
+      </div>
+
+      <hr />
+
+      <!-- The amenities details -->
+      <div class="row" style="color: grey; font-size: 20px">
+        <!-- "The Ameneties" column -->
+        <div class="col-md-4">
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <b>Amenities</b>
+        </div>
+        <div class="col-md-4">
+          <i class="fa fa-cutlery"></i><b>Kitchen</b><br />
+          <i class="fa fa-wifi"></i><b>WIFI</b><br />
+          <i class="fa fa-car"></i><b>Parking</b><br />
+          Smoking : <b><%= smoking %></b><br />
+          Pets : <b><%= pets %></b><br />
+
+        </div>
+
+        <div class="col-md-4">
+          <i class="fa fa-user-plus"></i><b>Family/kid friendly</b> <br />
+          <i class="fa fa-television"></i></i><b>T.V.</b> <br />
+          <i class="fa fa-glass"></i><b>Parking</b><br />
+          <i class="fa fa-tencent-weibo"></i><b>Wired Internet</b><br />
+          Infants : <b><%= infants %></b><br />
+        </div>
+
+      </div>
+
+      <hr />
+
+      <!-- The "Prices" md-row-->
+      <div class="row" style="color: grey; font-size: 20px">
+
+        <!-- Column-md-4 for the Prices title -->
+        <div class="col-md-4">
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <b>Prices</b>
+        </div>
+
+        <!-- Col-md-4 for the first column -->
+        <div class="col-md-4">
+          Extra People : <b>No Charge</b><br />
+          Cleaning Fee : <b>$38</b><br />
+          Weekly Discount : <b>5%</b><br />
+        </div>
+
+        <!-- Col-md-4 for the second column -->
+        <div class="col-md-4">
+          Monthly Discount : <b> 10%</b><br/>
+          Cancellation : <b><a href="https://www.airbnb.com/home/cancellation_policies#moderate">Moderate</a></b><br />
+        </div>
+      </div>
+
+      <hr />
+
+      <!-- The description md-row -->
+      <div class="row" style="color: grey; font-size: 20px">
+
+        <!-- Column-md-4 for the Description title -->
+        <div class="col-md-4">
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <b>Description</b>
+        </div>
+
+        <!-- Col-md-8 for the description content -->
+        <div class="col-md-8">
+          <b>The Space</b><br />
+          <%= description %>, <%= amenities %>,
+          pets : <%= pets %>, babies and infants : <%= infants %>,
+          smoking allowed : <%= smoking %>, extra features : <%= extrafeatures %>,
+          bathroom : <%= bathroom %>, guests : <%= guest %>,
+          bed : <%= bed %>, type : <%= type %>,
+          neighbourhood : <%= nearbyloc %>
+          <br />
+        </div>
+
+      </div>
+
+      <hr />
+
+      <!-- The House rules md-row -->
+      <div class="row" style="color: grey; font-size: 20px">
+
+        <!-- Column-md-4 for the House Rules title -->
+        <div class="col-md-4">
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <b>House Rules</b>
+        </div>
+
+        <!-- Col-md-8 for the rules content -->
+        <div class="col-md-8">
+          Check in is after <b>3 P.M.</b><br />
+        </div>
+
+      </div>
+
+      <hr />
+
+      <!-- The safety features md-row -->
+      <div class="row" style="color: grey; font-size: 20px">
+
+        <!-- Column-md-4 for the Safety features title -->
+        <div class="col-md-4">
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <b>Safety <br />
+            &nbsp;&nbsp;&nbsp;&nbsp; Features</b>
+        </div>
+
+        <!-- Col-md-8 for the features content -->
+        <div class="col-md-8">
+          Smoke Detector
+        </div>
+
+      </div>
+
+      <hr />
+
+      <!-- The availability md-row -->
+      <div class="row" style="color: grey; font-size: 20px">
+
+        <!-- Column-md-4 for the Safety features title -->
+        <div class="col-md-4">
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <b>Availability</b>
+        </div>
+
+        <!-- Col-md-4 for the features content -->
+        <div class="col-md-4">
+          <b>1 night</b> minimum stay
+        </div>
+
+        <!-- Col-md-4 for the calender -->
+        <div class="col-md-4">
+          <b>View Calender</b>
+        </div>
+
+      </div>
+
+      <hr />
+
+      <!-- The guidebook md-row -->
+      <div class="row" style="color: grey; font-size: 20px">
+
+        <!-- Col-md-4 for the things to to title -->
+        <div class="col-md-4">
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <b>Guidebook</b>
+        </div>
+
+        <!-- Col-md-8 for the things to do content -->
+        <div class="col-md-8">
+          <a href="https://www.airbnb.com/things-to-do/<%= city %>">
+            Things to do in <%= city %>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-10">
+          <font style="font-size: 30px; color: grey";>Hosted by <%= fname %></font>
+          <br />
+          <font style="color: grey"><%= city %>, <%= state %> . Member since 2013</font>
+        </div>
+
+        <!-- Host profile image -->
+        <div class="col-md-2">
+          <img id="img-circle-x" src= "hostprofileimg.jpg">
+        </div>
+
+        <div class="row">
+          <br />
+          <a href="/#contactHost">
+            &nbsp;&nbsp;&nbsp;&nbsp;<button>
+              <font color="#00008b">Contact Host</font>
+            </button>
+          </a><br />
+          <font style="color: grey">
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Response rate : <b>100%</b>
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Response Time : <b>within an hour</b>
+          </font>
+        </div>
+        <hr />
+
+        <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
+        <div style='overflow:hidden;height:540px;width:600px;'>
+          <div id='gmap_canvas' style='height:540px;width:600px;'></div>
+          <div><small><a href="http://embedgooglemaps.com"></a></small></div>
+          <div><small><a href="https://freedirectorysubmissionsites.com/"></a></small>
+          </div><style>#gmap_canvas img{max-width:none!important;background:none!important}</style>
+        </div>
+
+        <script src='https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyB-7U6qTUfJE-_NBItfrn81VTRM3ZPrLKA'>
+
+        </script>
+        <div style='overflow:hidden;height:400px;width:520px;'>
+          <div id='gmap_canvas' style='height:400px;width:520px;'>
+
+          </div><style>
+            #gmap_canvas img{max-width:none!important;background:none!important}
+          </style></div> <a href='https://addmap.net/'>https://addmap.net</a>
+        <script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=1f4edbca13e40906b40b73f6869d3a7e1e6e9b47'>
+
+        </script>
+        <script type='text/javascript'>
+          function init_map()
+          {
+            var myOptions =
+            {
+              zoom:18,
+              center:new google.maps.LatLng('<%= xcoord %>','<%= ycoord %>'),
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
+
+            marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng('<%= xcoord %>','<%= ycoord %>')
+            });
+            // infowindow = new google.maps.InfoWindow({
+            //   content:'<strong></strong><br>201 S 4th Street<br>95112 San Jose<br>'
+            // });
+            google.maps.event.addListener(marker, 'click',
+                    function(){
+                      infowindow.open(map,marker);
+                    });
+            infowindow.open(map,marker);
+          }
+          google.maps.event.addDomListener(window, 'load', init_map);
+        </script>
+
+      </div>
+
+    </div>
+
+    <!-- Column md-2 for booking and auction -->
+   
+
+  <!-- Remaining right padding for column md-2 -->
+  <div class="col-md-2">
+  </div>
+
+
+</div>
+
+<!-- End of main container -->
+</div>
+<script type="text/javascript" src="./js/nav_bar.js"></script>
+</body>
+</html>

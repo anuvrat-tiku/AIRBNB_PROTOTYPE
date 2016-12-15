@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <script src="http://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous">
+    </script>
+    <style>
+        #well {
+            background: #fff;
+        !important;
+            font-size: large;
+        }
+
+        .nobr {
+            white-space: nowrap
+        }
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <!-- Add angular script here if any -->
+    <script src="/angularjs/script.js"></script>
+    <title>
+        Welcome
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+
+<body style="background-color: whitesmoke" ng-app="indexPage">
+
+<!-- Ebay Logo -->
+<center>
+    <img src="airbnb.png" alt="airbnb Logo" height="100" width="100">
+</center><br /><br />
+
+<!-- Beginning of container Div element -->
+<div class="container">
+
+    <!-- Random:  ng-pattern for email ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" -->
+    <!-- 3 offset columns to get the well in the center -->
+    <div class="col-md-1"></div>
+    <div class="col-md-1"></div>
+    <div class="col-md-1"></div>
+
+    <!-- Define the two tabs -->
+    <div class="col-md-6">
+        <div class="well" id="well" style="border-style: ridge;">
+
+            <!-- Add a green filled tick glyphicon -->
+            <div class="nobr">
+                <span class="glyphicon glyphicon-ok-circle white" style="color:	red; font-size: 50px; "> </span>
+                <p style="color: red">
+                    Congratulations
+                </p>
+            </div>
+
+            You have requested a booking. A request has been sent to the host for approval. Once the host approves the property, you will get the required confirmation.
+            <br /><br />
+            <div>
+                <a href="/homepage_sk">
+                    <button style="height: 35px;" class="btn btn-danger btn-block" >
+                        <b>
+                            Continue to Homepage
+                        </b>
+                    </button>
+                </a>
+            </div>
+            <br />
+        </div>
+        <!-- End of well element div -->
+    </div>
+    <!-- End of column md-6 element div -->
+
+
+
+    <!-- Offset bootstrap columns -->
+    <div class="col-md-1 "></div>
+    <div class="col-md-1 "></div>
+    <div class="col-md-1 "></div>
+
+
+
+    <!-- End of row div element -->
+</div>
+<!-- End of container div element -->
+</body>
+
+</html>

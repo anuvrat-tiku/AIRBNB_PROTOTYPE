@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+<script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function(){
+
+        $("#phoneShow").hide();
+
+        $("#addphone").click(function(){
+            $("#phoneShow").toggle();
+        });
+    });
+</script>
+<head>
+
+    <style>
+
+
+        #searchID {
+            border-color: #ff5a5f;
+            background-color: #ff5a5f;
+            color: #fff;
+        }
+         .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            background-color:white;
+        }
+
+
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .header {
+            right:10px;
+            position:absolute;
+            z-index: 90;
+        }
+        .dropbtn{
+     background:none!important;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     cursor: pointer;
+}
+
+
+    </style>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="angularjs/index.js"></script>
+
+</head>
+<body ng-app="index" ng-controller="editProfile_ab">
+
+<div id="header_menu"></div>
+    <script type="text/javascript" src="./js/user_header.js"></script><br /><br /><hr />
+
+<div ng-show="updateSucces">
+    <div class="alert alert-success">
+        <span class="glyphicon glyphicon-star-empty" style="color:  #C0C0C0; font-size: 25px"></span>Profile updated successfully.
+        <a href="/homepage"> Go to Homepage. </a>
+    </div>
+</div>
+
+<div ng-show="updateError" style="color:red">
+    <div class="alert alert-danger">
+        <span class="glyphicon glyphicon-exclamation-sign" style="color:  #C0C0C0; font-size: 25px"></span>No Changes to save
+    </div>
+</div>
+
+<div ng-show="nameblank" style="color:red">
+    <div class="alert alert-danger">
+        <span class="glyphicon glyphicon-exclamation-sign" style="color:  #C0C0C0; font-size: 25px"></span>First/Last name and email cannot be blank
+    </div>
+</div>
+
+<main>
+
+    <div class="col-md-3"> <!-- 3  -->
+
+        <% include ./user_header_vertical_ab.ejs %>
+
+    </div>  <!-- 3 end -->
+
+    <div class="col-md-1">
+
+    </div>
+
+    <div class="col-md-8 well">  <!-- 7 -->
+
+        <div class="panel-header">
+             <h4>&emsp;&emsp;Required</h4>
+        </div>
+        <br>
+        <div class="row">   <!-- firstname -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                First Name
+            </div>
+
+            <div class="col-md-8">
+                <input type="text" style="margin-bottom: 10px;" class="form-control input-lg" style="font-size:12pt; height: 35px;" ng-model="firstname" id="firstname" name="firstname" ng-init="firstname='<%- user.firstname %>'">
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+        </div>          <!-- firstname end -->
+
+        <br>
+        <div class="row">   <!-- lastname -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                Last Name
+            </div>
+
+            <div class="col-md-8">
+                <input type="text" style="margin-bottom: 10px;" class="form-control input-lg" style="font-size:12pt; height: 35px;" ng-model="lastname" id="lastname" name="lastname" ng-init="lastname='<%- user.lastname %>'">
+                <font color="#666666" size="2pt">This is only shared once you have a confirmed booking with another Airbnb user.</font>
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+        </div>            <!-- lastname end -->
+
+        <br>
+        <div class="row">   <!-- gender -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                I am
+                <span class="glyphicon glyphicon-lock" style="color:  palevioletred; font-size: 13px"></span>
+            </div>
+
+            <div class="col-md-8">
+
+                <% if(user.gender==null){ %>
+                <input type="text" style="margin-bottom: 10px;" class="form-control input-lg" style="font-size:12pt; height: 35px;" ng-model="gender" id="gender" name="gender" placeholder="Male/Female">
+                <% } else { %>
+                <input type="text" style="margin-bottom: 10px;" class="form-control input-lg" style="font-size:12pt; height: 35px;" ng-model="gender" id="gender" name="gender" ng-init="gender='<%- user.gender %>'">
+                <% } %>
+
+                <br>
+                <font color="#666666" size="2pt">We use this data for analysis and never share it with other users.</font>
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+        </div>            <!-- gender end -->
+
+
+        <br>
+        <div class="row">   <!-- dob -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                Birth Date
+                <span class="glyphicon glyphicon-lock" style="color:  palevioletred; font-size: 13px"></span>
+            </div>
+
+            <div class="col-md-8">
+
+                <% if(user.dob==null || user.dob=='0/0/0' || user.dob=='undefined'){ %>
+                    <input type="text" style="margin-bottom: 10px;" class="form-control input-lg" style="font-size:12pt; height: 35px;" ng-model="dob" id="dob" name="dob" placeholder="MM/DD/YYYY">
+                <% } else { %>
+                    <input type="text" style="margin-bottom: 10px;" class="form-control input-lg" style="font-size:12pt; height: 35px;" ng-model="dob" id="dob" name="dob" ng-init="dob='<%- user.dob %>'">
+                <% } %>
+
+                <br>
+                <div ng-show="invalidDOB" style="color:red">Please enter a valid Date of Birth.</div>
+
+                <font color="#666666" size="2pt">The magical day you were dropped from the sky by a stork. We use this data for analysis and never share it with other users.</font>
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+        </div>            <!-- dob end -->
+
+
+        <br>
+        <div class="row">   <!-- email -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                Email Address
+                <span class="glyphicon glyphicon-lock" style="color:  palevioletred; font-size: 13px"></span>
+            </div>
+
+            <div class="col-md-8">
+                <input type="text" style="margin-bottom: 10px;" class="form-control input-lg" style="font-size:12pt; height: 35px;" ng-model="email" id="email" name="email" ng-init="email='<%- user.email %>'" readonly>
+                <font color="#666666" size="2pt">We won’t share your private email address with other Airbnb users. <a><font color="#2e8b57">Learn more.</font></a></font>
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+        </div>            <!-- email end -->
+
+        <br>
+        <div class="row">   <!-- phone number -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                Phone Number
+                <span class="glyphicon glyphicon-lock" style="color:  palevioletred; font-size: 13px"></span>
+            </div>
+
+            <div class="col-md-8">
+                <% if(user.phone==null){ %>
+                No phone number entered
+                <br>
+                <span class="glyphicon glyphicon-plus" style="color:  #C0C0C0; font-size: 17px"></span>
+                <a id="addphone">Add a phone number</a>
+                <br>
+                <div class="col-md-10">
+                    <div ng-show="phoneSaved" id="phoneSaved">
+                        <div class="alert alert-success">
+                            <span class="glyphicon glyphicon-ok-sign" style="color:  #C0C0C0; font-size: 25px"></span>Phone Number linked to your account.
+                        </div>
+                    </div>
+
+                </div>
+
+                <br>
+                <div ng-show="invalidNumber" style="color:red">Please enter a valid phone number.</div>
+                <p id="phoneShow">
+
+                    <input type="text" style="margin-bottom: 10px; width: 300px;" class="form-control input-lg" style="font-size:12pt; height: 35px;" ng-model="phone" id="phone" name="phone" placeholder="Phone Number">
+                    <img ng-click="btn_savePhone_ab()" src="/images/save-button.png"  width="90px" height="50px">
+
+                </p>
+                <% } else { %>
+                <input type="text" style="margin-bottom: 10px;" class="form-control input-lg" style="font-size:12pt; height: 35px;" ng-model="phone" id="phone" name="phone" ng-init="phone='<%- user.phone %>'">
+
+                <% } %>
+                <br><br><br>
+                <font color="#666666" size="2pt">This is only shared once you have a confirmed booking with another Airbnb user. This is how we can all get in touch.</font>
+            </div>
+                <!-- </div>  -->
+
+            <div class="col-md-1">
+
+            </div>
+        </div>            <!-- phone number end -->
+
+        <br>
+        <div class="row">   <!-- preferred language -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                Language
+            </div>
+
+            <div class="col-md-8">
+                English<br>
+                <font color="#666666" size="2pt">We'll send you messages in this language.</font>
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+        </div>            <!-- preferred language end -->
+
+        <br>
+        <div class="row">   <!-- preferred currency -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                Currency
+            </div>
+
+            <div class="col-md-8">
+                USD<br>
+                <font color="#666666" size="2pt">We’ll show you prices in this currency.</font>
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+        </div>            <!-- preferred currency end -->
+
+        <br>
+        <div class="row">   <!-- where you live -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                Where You Live
+            </div>
+
+
+        </div>            <!-- where you live -->
+
+        <br>
+        <div class="row">   <!-- address -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                Address
+            </div>
+
+            <div class="col-md-8">
+                <% if(user.address==null){ %>
+                    <input type="text" style="margin-bottom: 10px;" class="form-control input-lg" style="font-size:12pt; height: 35px;" ng-model="address" id="address" name="address" placeholder="Address">
+                <% } else { %>
+                    <input type="text" style="margin-bottom: 10px;" class="form-control input-lg" style="font-size:12pt; height: 35px;" ng-model="address" id="address" name="address" ng-init="address='<%- user.address %>'">
+                <% } %>
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+        </div>            <!-- address end -->
+
+        <br>
+        <div class="row">   <!-- city -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                City
+            </div>
+
+            <div class="col-md-8">
+                <% if(user.city==null){ %>
+                <input type="text" style="margin-bottom: 10px;" class="form-control input-lg" style="font-size:12pt; height: 35px;" ng-model="city" id="city" name="city" placeholder="City">
+                <% } else { %>
+                <input type="text" style="margin-bottom: 10px;" class="form-control input-lg" style="font-size:12pt; height: 35px;" ng-model="city" id="city" name="city" ng-init="city='<%- user.city %>'">
+                <% } %>
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+        </div>            <!-- city end -->
+
+        <br>
+        <div class="row">   <!-- state -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                State
+            </div>
+
+            <div class="col-md-8">
+                <% if(user.state==null){ %>
+                <input type="text" style="margin-bottom: 10px;" class="form-control input-lg" style="font-size:12pt; height: 35px;" ng-model="state" id="state" name="state" placeholder="State">
+                <% } else { %>
+                <input type="text" style="margin-bottom: 10px;" class="form-control input-lg" style="font-size:12pt; height: 35px;" ng-model="state" id="state" name="state" ng-init="state='<%- user.state %>'">
+                <% } %>
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+        </div>            <!-- state end -->
+
+        <br>
+        <div class="row">   <!-- zipcode -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                Zipcode
+            </div>
+
+            <div class="col-md-8">
+                <div ng-show="invalidZipcode" style="color:red">Please enter a valid zipcode.</div>
+                <% if(user.zipcode==null){ %>
+                    <input type="text" style="margin-bottom: 10px;" class="form-control input-lg" style="font-size:12pt; height: 35px;" ng-model="zipcode" id="zipcode" name="zipcode" placeholder="Zipcode">
+                <% } else { %>
+                    <input type="text" style="margin-bottom: 10px;" class="form-control input-lg" style="font-size:12pt; height: 35px;" ng-model="zipcode" id="zipcode" name="zipcode" ng-init="zipcode='<%- user.zipcode %>'">
+                <% } %>
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+        </div>            <!-- zipcode end -->
+
+
+        <br>
+        <div class="row">   <!-- Descript yourself -->
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-2">
+                Describe Yourself
+            </div>
+
+            <div class="col-md-8">
+                <% if(user.description==null){ %>
+                    <textarea rows="4" cols="50" ng-model="description" placeholder="Describe yourself here..."></textarea>
+                <% } else { %>
+                    <textarea rows="4" cols="50" ng-model="description" ng-init="description='<%- user.description %>'"></textarea>
+                <% } %>
+                <br>
+                <font color="#666666" size="2pt">Airbnb is built on relationships. Help other people get to know you.</font>
+                <br><br>
+                <font color="#666666" size="2pt">Tell them about the things you like: What are 5 things you can’t live without? Share your favorite travel destinations, books, movies, shows, music, food.</font>
+                <br><br>
+                <font color="#666666" size="2pt">Tell them what it’s like to have you as a guest or host: What’s your style of traveling? Of Airbnb hosting?</font>
+                <br><br>
+                <font color="#666666" size="2pt">Tell them about you: Do you have a life motto?</font>
+                <br>
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+        </div>            <!--  Descript yourself end -->
+
+    </div>  <!-- 7 end -->
+
+    <div class="row">
+    <div class="col-md-4"> <!-- 3  -->
+
+
+
+    </div>  <!-- 3 end -->
+
+    <div class="col-md-7"> <!-- 7  -->
+
+        <img ng-click="btn_saveProfile_ab()" src="/images/save-button.png"  width="90px" height="50px">
+    </div>  <!-- 7 end -->
+    </div>
+
+    <div class="row">
+        <div ng-show="updateSucces">
+            <div class="alert alert-success">
+                <span class="glyphicon glyphicon-star-empty" style="color:  #C0C0C0; font-size: 25px"></span>Profile updated successfully.
+                <a href="/homepage"> Go to Homepage. </a>
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+</body>
+</html>

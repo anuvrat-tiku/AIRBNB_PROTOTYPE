@@ -1,0 +1,106 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.fb {
+color:#ff00ff; 
+background:#ffff00; 
+border: solid 1px #000000; 
+font-family: arial, sans-serif; 
+font-size: 14px; 
+border-radius: 3px; 
+padding:5px;
+}
+.button1{
+background:#3b5998;
+height:46px;
+width:550px;
+ border: none;
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 15px;
+ margin: 4px 2px;
+ cursor: pointer;
+}
+.button2{
+background:#ffffff;
+height:46px;
+width:550px;
+ border: none;
+outline:  1px solid #e5e5e5;
+ color: black;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 15px;
+ margin: 4px 2px;
+ cursor: pointer;
+}
+.button3{
+background:#ff5a5f;
+height:46px;
+width:550px;
+ border: none;
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 15px;
+ margin: 4px 2px;
+ cursor: pointer;
+}
+
+#login{
+outline:  1px solid #ff5a5f;
+float:right;
+}
+input[type="text"] {
+    height:46px;
+width:550px;
+outline:  1px solid #aaaaaa;
+}
+input[type="email"] {
+    height:46px;
+width:550px;
+outline:  1px solid #e5e5e5;
+}
+input[type="password"] {
+    height:46px;
+width:550px;
+outline:  1px solid #e5e5e5;
+}
+
+.thumb {
+    width: 24px;
+    height: 24px;
+    float: none;
+    position: relative;
+    top: 7px;
+}
+
+form .progress {
+    line-height: 15px;
+}
+}
+
+.progress {
+    display: inline-block;
+    width: 100px;
+    border: 3px groove #CCC;
+}
+
+.progress div {
+    font-size: smaller;
+    background: orange;
+    width: 0;
+}

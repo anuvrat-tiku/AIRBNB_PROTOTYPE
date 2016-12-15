@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<head>
+    <style>
+        div.logo {
+            position: fixed;
+            top: 5px;
+            left: 20px;
+        }
+        div.fixedImage {
+
+            top: 130px;
+            left: 160px;
+        }
+
+        #searchID {
+            border-color: #ff5a5f;
+            background-color: #ff5a5f;
+            color: #fff;
+        }
+
+        small
+        {
+            display: block;
+            margin-top: 1em;
+        }
+    </style>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
+
+    <link rel="stylesheet"
+          href="bower_components/chartist/dist/chartist.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+
+<script>
+
+
+
+</script>
+
+    <script src="angularjs/admin.js"></script>
+
+</head>
+<body ng-app="admin" ng-controller="admin">
+
+
+
+<div ng-controller="admin">
+<div class="full" >
+    <script src="bower_components/chartist/dist/chartist.min.js"></script>
+    <header>
+    <% include ./user_adminheader_ab.ejs %>
+</header>
+<hr />
+    <div class="row">
+
+        <div class="col-md-1">
+
+        </div>
+
+        <div class="col-lg-8" style="width:350px; height:350px;">
+
+            <canvas id="myChart" width="200" height="200"></canvas>
+
+            <script>
+                var ctx = document.getElementById("myChart");
+                var myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: [
+                                <% for(i in city_city){ %>
+                                   "<%- city_city[i] %>",
+                                <%  } %>
+                        ],
+                        datasets: [{
+                            label: 'Number of clicks per page',
+                            data: [
+                                <% for(i in city_price){ %>
+                                "<%- city_price[i] %>",
+                                <%  } %>
+                            ],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 2
+
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }]
+                        }
+                    }
+                });
+            </script>
+            <br />
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<span style="text-align:center;"> City Wise revenue </span>
+        </div>
+
+
+        <div class="col-lg-3" style="width:350px; height:350px;">
+        </div>
+
+        <div class="col-lg-8" style="width:350px; height:350px;">
+
+            <canvas id="myPropertyChart" width="200" height="200"></canvas>
+
+            <script>
+                var ctx = document.getElementById("myPropertyChart");
+                var myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: [
+                            <% for(i in property_city){ %>
+                            "<%- property_city[i] %>",
+                            <%  } %>
+                        ],
+                        datasets: [{
+                            label: 'Number of clicks per page',
+                            data: [
+                                <% for(i in property_price){ %>
+                                "<%- property_price[i] %>",
+                                <%  } %>
+                            ],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 2
+
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }]
+                        }
+                    }
+                });
+            </script>
+            <br />
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<span style="text-align:center;"> Property Wise revenue </span>
+        </div>
+
+</div>
+    <br><br><br><br>
+    <div class="row">
+
+        <div class="col-lg-8" style="width:350px; height:350px;padding-left:3cm">
+            <div class="ct1-chart ct1-perfect-fourth" style="width:400px;height:400px;"></div>
+            <script type="text/javascript">
+                new Chartist.Bar('.ct1-chart', {
+                    labels: [
+                        <% for(i in maxHosts_hostid){ %>
+                        "<%- maxHosts_hostid[i] %>",
+                        <%  } %>
+
+                    ],
+                    series: [
+
+                        <% for(i in maxHosts_property){ %>
+                        "<%- maxHosts_property[i] %>",
+                        <%  } %>
+                    ]
+                }, {
+                    distributeSeries: true
+                });
+
+            </script>
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  Properties by Host
+
+        </div>
+
+
+        <div class="col-lg-3" style="width:350px; height:350px;">
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+
+        </div>
+
+
+        <div class="col-lg-8" style="width:350px; height:350px;">
+
+            <canvas id="myProperty1Chart1" width="200" height="200"></canvas>
+
+            <script>
+                var ctx = document.getElementById("myProperty1Chart1");
+                var myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: [
+                            <% for(i in maxHosts_hostid){ %>
+                            "<%- maxHosts_hostid[i] %>",
+                            <%  } %>
+                        ],
+                        datasets: [{
+                            label: 'Revenue of Hosts',
+                            data: [
+                                <% for(i in maxHosts_price){ %>
+                                "<%- maxHosts_price[i] %>",
+                                <%  } %>
+                            ],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 2
+
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }]
+                        }
+                    }
+                });
+            </script>
+            <br />
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<span style="text-align:center;"> Host Wise revenue </span>
+        </div>
+
+    </div>
+
+        <br /><br /><br />
+        <div class="row">
+
+        </div>
+
+
+
+</div>
+</div>
+<br><br><br><br><br><br>
+
+<div ng-controller="biddingAnalytics">
+
+    <div class="row">
+       <div class="col-md-3">
+        <div class="row">
+            <button type="button" id="searchID" style="height: 45px;" class="btn btn-lg" ng-click="btn_getBidAnalytics_ab()">View Bid Analytics</button>
+        </div>
+
+        <br><br>
+
+
+        <span ng-repeat="property in bidProperties">
+            <a ng-click="btn_getBidDetails_ab(property)"> {{property}} <br><br><br> </a>
+        </span>
+       </div>
+
+        <div class="col-md-1">
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</body>
+</html>

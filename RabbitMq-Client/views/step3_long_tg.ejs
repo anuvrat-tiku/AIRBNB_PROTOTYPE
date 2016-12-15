@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Become a Host and Rent Out Your Room, House or Apartment on Airbnb</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<style>
+.button3{
+background:#ff5a5f;
+height:46px;
+width:550px;
+ border: none;
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 15px;
+ margin: 4px 2px;
+ cursor: pointer;
+}
+
+#login{
+outline:  1px solid #ff5a5f;
+float:right;
+}
+input[type="email"] {
+    height:46px;
+width:550px;
+outline:  1px solid #aaaaaa;
+}
+input[type="password"] {
+    height:46px;
+width:550px;
+outline:  1px solid #aaaaaa;
+}
+input[type="submit"] {
+  background:#ff5a5f;
+  padding: 10px;
+float:right;
+  display: block;
+  width: 140px;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+}
+input[type="text"] {
+ width:370px;
+ height:40px;
+}
+
+.heading{
+  font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 25px;
+    line-height: 1.43;
+    color: #484848;
+    margin: 0 auto;
+}
+.photo{
+  padding-left: 2cm;
+    }
+#ex1{
+  background:#00a699;
+}
+.head{
+
+  background:#FFFFFF;
+}
+.main{
+  padding-left: 3cm;
+}
+
+.panel-default {
+  height: 170px; 
+  width:320px;
+  padding-right:2cm;
+}
+
+</style>
+
+</head>
+<body style="                        height: 100%;
+    background: linear-gradient(90deg, #FFFFFF 55%, #FAFAFA 45%);">
+<div class="container-fluid" >
+  <div class="head">
+  <a href="/host_home">
+<img src="air1.png" width="120" height="65"> 
+</a> &nbsp &nbsp Step 3: Get ready for guests<br /> 
+<hr /></div>
+ 
+<div class="total" > 
+ <div id="left" style="float:left; width:60%;">
+<div class="col-md-8 col-md-offset-1">
+<div class="main">
+<br /> <br />
+    <div style="
+    font-size: 22px;
+    line-height: 1.43;
+    color: #484848;">How long can guests stay?</div> <br /> 
+  
+    <form method="POST" action="/hoststep3_long">
+  <div class="input-group">
+          
+          <input type="text" name="min" id="Number_value" value="1 night min" min="0"  >
+
+<span class="input-group-btn">
+              <button type="button" class="btn btn-default" onclick="dec();">
+                  <span class="glyphicon glyphicon-minus"></span>
+              </button>
+          </span>
+
+
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-default" onclick="inc();">
+                  <span class="glyphicon glyphicon-plus"></span>
+              </button>
+          </span>
+      </div> <br />
+      <div class="input-group">
+          
+          <input type="text" name="max" id="Number_value1" value="1 night max" min="0"  >
+
+<span class="input-group-btn">
+              <button type="button" class="btn btn-default" onclick="dec1();">
+                  <span class="glyphicon glyphicon-minus"></span>
+              </button>
+          </span>
+
+
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-default" onclick="inc1();">
+                  <span class="glyphicon glyphicon-plus"></span>
+              </button>
+          </span>
+      </div> <br />
+
+<script language='javascript' type='text/javascript'>
+        function inc()
+        {
+            var val = parseInt(document.getElementById('Number_value').value);  
+            val+=1;
+var str=" nights min";
+val=val+str;
+            
+            document.getElementById('Number_value').value = val;
+        }
+        function dec()
+        {
+              var val = parseInt(document.getElementById('Number_value').value);  
+            val-=1;
+var str=" nights min";
+if(val<1) 
+{
+val = 0;
+str=" nights min";
+}
+
+val=val+str;
+            
+            document.getElementById('Number_value').value = val;
+        }
+
+        function inc1()
+        {
+            var val = parseInt(document.getElementById('Number_value1').value);  
+            val+=1;
+var str=" nights max";
+val=val+str;
+            
+            document.getElementById('Number_value1').value = val;
+        }
+        function dec1()
+        {
+              var val = parseInt(document.getElementById('Number_value1').value);  
+            val-=1;
+var str=" nights max";
+if(val<1) 
+{
+val = 0;
+str=" nights max";
+}
+
+val=val+str;
+            
+            document.getElementById('Number_value1').value = val;
+        }
+    </script>    
+       <br /> <br />
+     <span style="color:#007a87;font-size:17px;">Tip:</span> <span style="color:#767676;font-size:17px;">Shorter trips can mean more reservations, but you might have to turn over your space more often.</span>
+     <br />
+<br /> <br /><br />
+
+<br /> <br /><br /><br /> <br />
+  
+     
+ <br /> <hr /> 
+ <a href="/step3_ready" style="color:#989898;"><i class="fa fa-arrow-left"></i>&nbsp Back</a>
+ <input type="submit" value="Next"></form>
+   
+ </div> 
+
+</div>
+</div>
+
+<div id="right" style="float:right; width:40%;">
+  
+
+
+
+
+</div>
+  
+
+</div>
+</div>
+
+</body>
+
+</html>
+
